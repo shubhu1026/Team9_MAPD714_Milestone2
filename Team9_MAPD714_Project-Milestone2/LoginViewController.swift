@@ -23,7 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var cardView: UIView!
     
-    //@IBOutlet var 
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,15 @@ class LoginViewController: UIViewController {
         let storedEmail = UserDefaults.standard.object(forKey: "email")
         let storedPassword = UserDefaults.standard.object(forKey: "password")
         
-        
+        if let email = storedEmail as? String{
+            if let password = storedPassword as? String{
+                if(email != emailTextField.text || password != passwordTextField.text)
+                {
+                    showPasswordIncorrectAlert()
+                    return
+                }
+            }
+        }
         
         let cruiseListViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseListViewController") as! CruiseListViewController
         
@@ -95,6 +104,17 @@ class LoginViewController: UIViewController {
         setupBackButton()
         
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
+    }
+    
+    func showPasswordIncorrectAlert() {
+        let alert = UIAlertController(title: "Wrong Password/ Email",
+                                          message: "The password/ email you entered is incorrect. Please try again.",
+                                          preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
     }
     
     func setupBackButton()

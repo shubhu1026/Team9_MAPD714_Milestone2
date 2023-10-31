@@ -192,8 +192,10 @@
                     </view>
                     <connections>
                         <outlet property="cardView" destination="oBC-5c-3vn" id="Cxj-4F-YLC"/>
+                        <outlet property="emailTextField" destination="vQ3-ji-CA5" id="LhJ-dM-cI6"/>
                         <outlet property="loginButton" destination="FXh-Ha-Ddi" id="tFc-EU-EI5"/>
                         <outlet property="loginTitle" destination="Ut3-rV-FTg" id="Hy9-6B-ktB"/>
+                        <outlet property="passwordTextField" destination="EvW-Fb-0TN" id="FC6-eE-ERC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWn-fA-PPV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
