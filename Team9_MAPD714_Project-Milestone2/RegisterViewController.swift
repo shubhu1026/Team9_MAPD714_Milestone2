@@ -63,9 +63,6 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func loginButtonClicked(_ sender: Any) {
-        let loginViewController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController 
-        
-        loginViewController.loadViewIfNeeded()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -74,6 +71,13 @@ class RegisterViewController: UIViewController {
         
         cruiseListViewController.loadViewIfNeeded()
         //self.present(registerViewController, animated: true, completion: nil)
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        backButton.tintColor = UIColor.black
+
+        // Set the custom back button for this view controller
+        self.navigationItem.backBarButtonItem = backButton
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
 }

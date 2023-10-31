@@ -75,6 +75,13 @@ class LoginViewController: UIViewController {
         
         cruiseListViewController.loadViewIfNeeded()
         //self.present(registerViewController, animated: true, completion: nil)
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        backButton.tintColor = UIColor.black
+
+        // Set the custom back button for this view controller
+        self.navigationItem.backBarButtonItem = backButton
+        
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
 }

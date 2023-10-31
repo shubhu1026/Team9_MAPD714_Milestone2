@@ -19,6 +19,7 @@
 		DEACA96F2AF053B200EC7CEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA96E2AF053B200EC7CEE /* LoginViewController.swift */; };
 		DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */; };
 		DEB8919C2AF0695C00A3DD0C /* CruiseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */; };
+		DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		DEACA96E2AF053B200EC7CEE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseListViewController.swift; sourceTree = "<group>"; };
+		DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */,
 				DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */,
 				DEACA9442AF02F0700EC7CEE /* Main.storyboard */,
+				DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */,
 				DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */,
 				DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */,
 				DEACA9472AF02F0A00EC7CEE /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 				DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */,
 				DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */,
 				DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */,
+				DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */,
 				DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
