@@ -4,6 +4,16 @@
 //
 //  Created by Shubham Patel on 2023-10-30.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 30 Oct 2023
+//
+//  The file will handle the user login process and navigation to further screens
 
 import UIKit
 
@@ -12,6 +22,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginTitle: UILabel!
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var cardView: UIView!
+    
+    //@IBOutlet var 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,17 +83,27 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonClicked(_ sender: Any) {
+        let storedEmail = UserDefaults.standard.object(forKey: "email")
+        let storedPassword = UserDefaults.standard.object(forKey: "password")
+        
+        
+        
         let cruiseListViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseListViewController") as! CruiseListViewController
         
         cruiseListViewController.loadViewIfNeeded()
-        //self.present(registerViewController, animated: true, completion: nil)
+        
+        setupBackButton()
+        
+        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
+    }
+    
+    func setupBackButton()
+    {
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         backButton.tintColor = UIColor.black
 
         // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
-        
-        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
 }

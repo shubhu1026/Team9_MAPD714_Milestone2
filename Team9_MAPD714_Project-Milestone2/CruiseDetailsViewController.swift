@@ -4,6 +4,16 @@
 //
 //  Created by Shubham Patel on 2023-10-30.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 30 Oct 2023
+//
+// The file will handle the logic to populate the views with details about the cruise
 
 import UIKit
 

@@ -4,6 +4,15 @@
 //
 //  Created by Shubham Patel on 2023-10-30.
 //
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 30 Oct 2023
+//
+//  The file will handle user registration logic and further navigation code
 
 import UIKit
 
@@ -12,6 +21,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet var registerTitle: UILabel!
     @IBOutlet var registerButton: UIButton!
     @IBOutlet var cardView: UIView!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var confirmPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,17 +79,29 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
+        if(passwordTextField.text == confirmPasswordTextField.text)
+        {
+            UserDefaults.standard.set(emailTextField.text!, forKey: "email")
+            UserDefaults.standard.set(passwordTextField.text!, forKey: "password")
+        }
+        
+        
         let cruiseListViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseListViewController") as! CruiseListViewController
         
         cruiseListViewController.loadViewIfNeeded()
-        //self.present(registerViewController, animated: true, completion: nil)
         
+        setupBackButton()
+        
+        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
+    }
+    
+    func setupBackButton()
+    {
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         backButton.tintColor = UIColor.black
 
         // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
-        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
 }

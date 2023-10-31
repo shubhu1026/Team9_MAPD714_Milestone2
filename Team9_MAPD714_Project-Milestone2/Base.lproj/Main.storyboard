@@ -316,6 +316,9 @@
                     <navigationItem key="navigationItem" id="18R-fA-qab"/>
                     <connections>
                         <outlet property="cardView" destination="Vvi-MB-1jo" id="YUS-1x-qVc"/>
+                        <outlet property="confirmPasswordTextField" destination="Cqm-Dt-dib" id="jfm-9M-huE"/>
+                        <outlet property="emailTextField" destination="Zxx-hu-xV1" id="L9W-38-Zj6"/>
+                        <outlet property="passwordTextField" destination="4fb-ZJ-dWI" id="Rra-GG-Tqn"/>
                         <outlet property="registerButton" destination="trI-Ph-cEZ" id="rm2-NL-ezz"/>
                         <outlet property="registerTitle" destination="t60-WY-Sxx" id="hkh-tb-yfi"/>
                     </connections>

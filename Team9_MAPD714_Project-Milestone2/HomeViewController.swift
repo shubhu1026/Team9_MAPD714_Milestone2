@@ -1,8 +1,18 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Team9_MAPD714_Project-Milestone2
 //
 //  Created by Shubham Patel on 2023-10-30.
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 30 Oct 2023
+//
+//  The current file contains code to setup card view, background, button and also the button to navigate to login/ Register screen
 //
 
 import UIKit
