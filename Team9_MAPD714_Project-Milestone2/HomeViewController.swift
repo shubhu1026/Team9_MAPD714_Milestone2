@@ -17,7 +17,49 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    var temp = 1
+    var tapGesture: UITapGestureRecognizer?
+    @IBOutlet weak var selectDestinationDropdown: UITextField!
+    @IBOutlet weak var selectDestinationDropdownView: UIPickerView!
+    @IBOutlet weak var selectPortDropdown: UITextField!
+    @IBOutlet weak var selectPortDropdownView: UIPickerView!
+
+    @IBOutlet weak var selectDatePicker: UITextField!
+    @IBOutlet weak var selectDatePickerView: UIDatePicker!
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    var list = ["Spain", "Australia", "United Kingdom", "Japan"]
+    var listPort = ["Miami", "Sydney", "london", "Ramai"]
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if(temp == 1){
+            return list.count
+        }else{
+            return listPort.count
+        }
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+           self.view.endEditing(true)
+        if(temp == 1){
+            return list[row]
+        }else{
+            return listPort[row]
+        }
+         
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if(temp == 1){
+            self.selectDestinationDropdown.text = self.list[row]
+            self.selectDestinationDropdownView.isHidden = true
+        }else{
+            self.selectPortDropdown.text = self.listPort[row]
+            self.selectPortDropdownView.isHidden = true
+        }
+       
+    }
     
     @IBOutlet var cardView: UIView!
     
@@ -30,16 +72,26 @@ class HomeViewController: UIViewController {
         return textField
     }()
 
-    let pickerView: UIPickerView = {
-        let picker = UIPickerView()
-        return picker
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dropdownField.inputView = pickerView
-        
+        selectDestinationDropdownView.delegate = self
+        selectDestinationDropdownView.dataSource = self
+        selectPortDropdownView.delegate = self
+        // Hide the dropdown picker initially
+        selectPortDropdownView.dataSource = self
+        selectPortDropdownView.isHidden = true
+        selectDestinationDropdownView.isHidden = true
+         // Configure the date picker only for the selectDatePicker text field
+        selectDatePickerView.isHidden = true
+        selectDatePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+
+        // Initialize the tap gesture recognizer to handle taps outside text fields
+        if tapGesture == nil {
+                    tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+                }
+                if let tapGesture = tapGesture {
+                    view.addGestureRecognizer(tapGesture)
+                }
         // Do any additional setup after loading the view.
         setupBackground()
         
@@ -48,6 +100,20 @@ class HomeViewController: UIViewController {
         setupButton()
     }
     
+    @IBAction func SelectDestinationDidBeginEditing(_ sender: UITextField) {
+        temp = 1
+        selectDestinationDropdownView.isHidden = false
+    }
+    @IBAction func SelectPortDidBeginEditing(_ sender: UITextField) {
+        temp = 2
+        selectPortDropdownView.isHidden = false
+    }
+    @IBAction func SelectDateDidBeginEditing(_ sender: UITextField) {
+        if sender == selectDatePicker {
+                   temp = 3
+            selectDatePickerView.isHidden = false // Show the date picker only for the selectDatePicker text field
+        }
+    }
     func setupBackground() {
         let background = UIImage(named: "bgHome")
         
@@ -60,6 +126,7 @@ class HomeViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
+                                                
     
     func setupCardView()
     {
@@ -74,7 +141,13 @@ class HomeViewController: UIViewController {
         
         titleLabel.textColor = UIColor.white
     }
-    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+     // Hide the date picker and resign first responder status from all text fields
+        selectDatePickerView.isHidden = true
+        selectDestinationDropdown.resignFirstResponder()
+        selectPortDropdown.resignFirstResponder()
+        selectDatePicker.resignFirstResponder()
+    }
     func setupButton()
     {
         let customColor = UIColor(red: 5/255, green: 29/255, blue: 31/255, alpha: 0.7)
@@ -84,6 +157,12 @@ class HomeViewController: UIViewController {
         searchButton.layer.shadowOffset = CGSize(width: 4, height: 8)
         searchButton.layer.shadowRadius = 4
         searchButton.layer.shadowOpacity = 0.25
+    }
+    @objc func datePickerValueChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        selectDatePicker.text = dateFormatter.string(from: selectDatePickerView.date)
     }
     
 

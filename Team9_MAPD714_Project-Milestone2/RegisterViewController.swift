@@ -33,7 +33,7 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.isModalInPresentation = true
     }
-    
+    // setup card 
     func setupCardView()
     {
         cardView.layer.cornerRadius = 10
@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController {
         
         setupButton()
     }
-    
+     // changing background image
     func setupBackground() {
         let background = UIImage(named: "bgLoginRegister")
         
@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
-
+    // changing button css
     func setupButton()
     {
         let customColor = UIColor(red: 5/255, green: 29/255, blue: 31/255, alpha: 0.7)
@@ -79,6 +79,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
+         // verifying password 
         if(passwordTextField.text == confirmPasswordTextField.text)
         {
             UserDefaults.standard.set(emailTextField.text!, forKey: "email")
@@ -91,7 +92,7 @@ class RegisterViewController: UIViewController {
         cruiseListViewController.loadViewIfNeeded()
         
         setupBackButton()
-        
+          // Navigating to next view controller
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
     

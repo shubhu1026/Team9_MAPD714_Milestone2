@@ -41,8 +41,8 @@
                                         <nil key="textColor"/>
                                         <color key="highlightedColor" systemColor="labelColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhD-Zp-onl">
-                                        <rect key="frame" x="22" y="316" width="317" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhD-Zp-onl">
+                                        <rect key="frame" x="22" y="291" width="317" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Search Cruises">
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -51,6 +51,45 @@
                                             <action selector="searchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gs5-9W-x4A"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Departure Destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niB-VA-2xI">
+                                        <rect key="frame" x="22" y="83" width="317" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="SelectDestinationDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="PGI-ty-YVM"/>
+                                        </connections>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O4o-Dc-Ehw">
+                                        <rect key="frame" x="0.0" y="83" width="361" height="164"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Port" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5aM-HX-7rG">
+                                        <rect key="frame" x="22" y="144" width="317" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="SelectPortDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="7Cn-4p-rc6"/>
+                                        </connections>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2z-mh-Nca">
+                                        <rect key="frame" x="15" y="83" width="331" height="164"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v3v-Oi-jhb">
+                                        <rect key="frame" x="22" y="223" width="317" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="SelectDateDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="M4x-du-8yS"/>
+                                        </connections>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lJa-mG-lWE">
+                                        <rect key="frame" x="22" y="203" width="317" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -81,12 +120,18 @@
                     <connections>
                         <outlet property="cardView" destination="xph-gf-8dS" id="AuX-sc-cAL"/>
                         <outlet property="searchButton" destination="zhD-Zp-onl" id="uha-3r-bJu"/>
+                        <outlet property="selectDatePicker" destination="v3v-Oi-jhb" id="k6v-dx-Idk"/>
+                        <outlet property="selectDatePickerView" destination="lJa-mG-lWE" id="rth-bN-QK2"/>
+                        <outlet property="selectDestinationDropdown" destination="niB-VA-2xI" id="EPv-31-ORI"/>
+                        <outlet property="selectDestinationDropdownView" destination="O4o-Dc-Ehw" id="0cQ-qg-IWv"/>
+                        <outlet property="selectPortDropdown" destination="5aM-HX-7rG" id="Phg-NW-os2"/>
+                        <outlet property="selectPortDropdownView" destination="G2z-mh-Nca" id="1pc-Pg-V9e"/>
                         <outlet property="titleLabel" destination="dk6-Ck-ISu" id="19I-At-34e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1187" y="-373"/>
+            <point key="canvasLocation" x="-1187.0229007633586" y="-373.23943661971833"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="NxL-4G-oQZ">
