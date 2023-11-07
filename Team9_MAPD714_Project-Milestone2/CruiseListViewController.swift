@@ -22,11 +22,16 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
     @IBOutlet var tableView: UITableView!
         
     let cruises = [
-        Cruise(name: "Cruise 1", nights: 7, departurePort: "Miami", cost: 1000, imageName: "cruiseImage", numPorts: 5),
-        Cruise(name: "Cruise 2", nights: 5, departurePort: "Los Angeles", cost: 1200, imageName: "cruiseImage", numPorts: 4),
-        Cruise(name: "Cruise 3", nights: 10, departurePort: "New York", cost: 1500, imageName: "cruiseImage", numPorts: 7),
-        Cruise(name: "Cruise 4", nights: 3, departurePort: "San Francisco", cost: 800, imageName: "cruiseImage", numPorts: 2),
-        Cruise(name: "Cruise 5", nights: 8, departurePort: "Sydney", cost: 2000, imageName: "cruiseImage", numPorts: 6),
+        Cruise(name: "Caribbean Breeze", nights: 7, departurePort: "Miami", cost: 1000, imageName: "cruiseImage1", numPorts: 5),
+            Cruise(name: "Alaskan Adventure", nights: 10, departurePort: "Seattle", cost: 1500, imageName: "cruiseImage2", numPorts: 7),
+            Cruise(name: "Mediterranean Marvel", nights: 8, departurePort: "Barcelona", cost: 1400, imageName: "cruiseImage3", numPorts: 6),
+            Cruise(name: "Hawaiian Paradise", nights: 12, departurePort: "Honolulu", cost: 1800, imageName: "cruiseImage4", numPorts: 9),
+            Cruise(name: "Tropical Escape", nights: 6, departurePort: "Cancun", cost: 1200, imageName: "cruiseImage5", numPorts: 4),
+            Cruise(name: "Exotic Far East", nights: 14, departurePort: "Singapore", cost: 2200, imageName: "cruiseImage6", numPorts: 10),
+            Cruise(name: "Tahitian Treasures", nights: 9, departurePort: "Papeete", cost: 1700, imageName: "cruiseImage7", numPorts: 6),
+            Cruise(name: "Baltic Beauty", nights: 11, departurePort: "Copenhagen", cost: 1600, imageName: "cruiseImage8", numPorts: 8),
+            Cruise(name: "African Safari Cruise", nights: 13, departurePort: "Cape Town", cost: 2100, imageName: "cruiseImage9", numPorts: 9),
+            Cruise(name: "Galapagos Explorer", nights: 7, departurePort: "Quito", cost: 1900, imageName: "cruiseImage1", numPorts: 4)
     ]
 
         
@@ -60,14 +65,13 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get the selected item
         let selectedCruise = cruises[indexPath.row]
-
+        
         // Perform the desired action, e.g., push a new view controller
         let detailsViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseDetailsViewController") as! CruiseDetailsViewController
         
         detailsViewController.cruise = selectedCruise // Pass data to the details view
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
-
 }
 
 class Cruise {
@@ -105,6 +109,21 @@ class CruiseTableViewCell: UITableViewCell {
         setupCardView()
         
         cruiseImageView.image = UIImage(named: cruise.imageName)
+//        cruiseImageView.image = cruiseImage
+        cruiseImageView.contentMode = .scaleAspectFill // This sets the content mode to "cover"
+        cruiseImageView.clipsToBounds = true // This ensures the image is clipped to the bounds
+        cruiseImageView.translatesAutoresizingMaskIntoConstraints = false // Enable auto layout constraints
+
+        // Set the height to 200px
+        cruiseImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        if let superview = cruiseImageView.superview {
+            cruiseImageView.widthAnchor.constraint(equalTo: superview.widthAnchor, multiplier: 1.0).isActive = true
+        }
+//        cruiseImageView.widthAnchor.constraint(equalTo: superview!.widthAnchor, multiplier: 1.0).isActive = true
+
+        // Set the width to 100% of the parent view (assuming you are using Auto Layout)
+//        cruiseImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true        
+        
         nameLabel.text = cruise.name
         nightsLabel.text = "\(cruise.nights) Nights"
         departurePortLabel.text = "\(cruise.departurePort)"

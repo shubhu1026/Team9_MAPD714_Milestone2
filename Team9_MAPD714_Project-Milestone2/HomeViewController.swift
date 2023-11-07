@@ -33,7 +33,7 @@ class HomeViewController: UIViewController , UIPickerViewDataSource, UIPickerVie
         return 1
     }
     var list = ["Spain", "Australia", "United Kingdom", "Japan"]
-    var listPort = ["Miami", "Sydney", "london", "Ramai"]
+    var listPort = ["Miami", "Sydney", "london", "Tokyo"]
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(temp == 1){
             return list.count
@@ -66,11 +66,6 @@ class HomeViewController: UIViewController , UIPickerViewDataSource, UIPickerVie
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var searchButton: UIButton!
     
-    let dropdownField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Select an option"
-        return textField
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

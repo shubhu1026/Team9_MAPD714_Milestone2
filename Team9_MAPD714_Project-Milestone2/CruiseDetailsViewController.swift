@@ -29,8 +29,6 @@ class CruiseDetailsViewController: UIViewController {
 
         setupBackground()
         if let cruise = cruise {
-                    // Update your UI elements with the details from the 'cruise' property
-                    // For example, you can set labels or image views with cruise.name, cruise.nights, etc.
             cruiseName.text = cruise.name
         }
         setupButton()
