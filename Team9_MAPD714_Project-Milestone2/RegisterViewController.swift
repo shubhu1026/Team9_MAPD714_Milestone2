@@ -60,6 +60,14 @@ class RegisterViewController: UIViewController {
         imageView.image = background
         imageView.center = view.center
         view.addSubview(imageView)
+        
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         self.view.sendSubviewToBack(imageView)
     }
     // changing button css

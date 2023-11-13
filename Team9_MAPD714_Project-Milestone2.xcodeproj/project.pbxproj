@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */; };
 		DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */; };
 		DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */; };
 		DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentScreen.storyboard; sourceTree = "<group>"; };
 		DEACA93B2AF02F0700EC7CEE /* Team9_MAPD714_Project-Milestone2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team9_MAPD714_Project-Milestone2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */,
 				DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */,
 				DEACA9442AF02F0700EC7CEE /* Main.storyboard */,
+				DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */,
 				DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */,
 				DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */,
 				DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */,
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEACA94B2AF02F0A00EC7CEE /* LaunchScreen.storyboard in Resources */,
+				DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */,
 				DEACA9482AF02F0A00EC7CEE /* Assets.xcassets in Resources */,
 				DEACA9462AF02F0700EC7CEE /* Main.storyboard in Resources */,
 			);
