@@ -28,6 +28,10 @@
 		DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */; };
 		DEB8919C2AF0695C00A3DD0C /* CruiseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */; };
 		DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */; };
+		DEE378E92B03BE1E004CE546 /* ItineraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE378E82B03BE1E004CE546 /* ItineraryCell.swift */; };
+		DEE378EB2B03BE71004CE546 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE378EA2B03BE71004CE546 /* Itinerary.swift */; };
+		DEE4CB7F2B03470600C4FBDC /* Ticket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE4CB7E2B03470600C4FBDC /* Ticket.storyboard */; };
+		DEE4CB812B03471400C4FBDC /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4CB802B03471400C4FBDC /* TicketViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		DEB891992AF0617A00A3DD0C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DEB8919B2AF0695C00A3DD0C /* CruiseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseListViewController.swift; sourceTree = "<group>"; };
 		DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseDetailsViewController.swift; sourceTree = "<group>"; };
+		DEE378E82B03BE1E004CE546 /* ItineraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryCell.swift; sourceTree = "<group>"; };
+		DEE378EA2B03BE71004CE546 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
+		DEE4CB7E2B03470600C4FBDC /* Ticket.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ticket.storyboard; sourceTree = "<group>"; };
+		DEE4CB802B03471400C4FBDC /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,10 @@
 				DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */,
 				DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */,
 				DE3C67342B0310A6006317BA /* CheckoutScreen.storyboard */,
+				DEE4CB7E2B03470600C4FBDC /* Ticket.storyboard */,
+				DEE4CB802B03471400C4FBDC /* TicketViewController.swift */,
+				DEE378E82B03BE1E004CE546 /* ItineraryCell.swift */,
+				DEE378EA2B03BE71004CE546 /* Itinerary.swift */,
 				DE3C67362B0310B6006317BA /* CheckoutViewController.swift */,
 				DE3C67272B02CCF3006317BA /* PaymentViewController.swift */,
 				DE3C67292B02CD43006317BA /* RoomDetails.storyboard */,
@@ -271,6 +283,7 @@
 				DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */,
 				DE3C672E2B02CD6F006317BA /* PassengerDetails.storyboard in Resources */,
 				DE3C67332B02EB38006317BA /* Main.storyboard in Resources */,
+				DEE4CB7F2B03470600C4FBDC /* Ticket.storyboard in Resources */,
 				DE3C67352B0310A6006317BA /* CheckoutScreen.storyboard in Resources */,
 				DE3C672A2B02CD43006317BA /* RoomDetails.storyboard in Resources */,
 				DEACA9482AF02F0A00EC7CEE /* Assets.xcassets in Resources */,
@@ -303,10 +316,13 @@
 				DEB8919C2AF0695C00A3DD0C /* CruiseListViewController.swift in Sources */,
 				DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */,
 				DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */,
+				DEE378EB2B03BE71004CE546 /* Itinerary.swift in Sources */,
 				DE3C67372B0310B6006317BA /* CheckoutViewController.swift in Sources */,
 				DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */,
 				DE3C672C2B02CD52006317BA /* RoomDetailsViewController.swift in Sources */,
+				DEE4CB812B03471400C4FBDC /* TicketViewController.swift in Sources */,
 				DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */,
+				DEE378E92B03BE1E004CE546 /* ItineraryCell.swift in Sources */,
 				DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */,
 				DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */,
 			);

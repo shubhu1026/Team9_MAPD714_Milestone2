@@ -25,6 +25,7 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var totalRoomsCount: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         if let totalRooms = totalRooms {
             totalRoomsCount.text = totalRooms
@@ -35,57 +36,54 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        addSampleData()
         setupButton()
-//        tableView.register(GuestDetailCell.self, forCellReuseIdentifier: "guestCell")
-        // Do any additional setup after loading the view.
+        addSampleData()
     }
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if let booking = booking {
-                return booking.guestDetails.count
-                // Access properties of booking safely here
-            } else {
-                return 0
-                // Handle the case where booking is nil
-            }
-           
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let booking = booking {
+            return booking.guestDetails.count
+                        // Access properties of booking safely here
+        } else {
+            return 0
+                        // Handle the case where booking is nil
         }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "colorCell", for: indexPath)
-//            cell.backgroundColor = rainbow[indexPath.item]
-            
-            //Default Content Configuration
-        var content = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "guestCell", for: indexPath) as! GuestCell
+        
         if let guest = booking?.guestDetails[indexPath.item] {
-            content.text = guest.Name
+            cell.setupGuest(guest: guest)
         }
-            cell.contentConfiguration = content
-            return cell
-        }
-    func addSampleData() {
-            let sampleGuests = [
-                GuestDetail(Name: "John", Age: 30, Gender: "Male"),
-                GuestDetail(Name: "Alice", Age: 25, Gender: "Female"),
-                // Add more sample guests as needed
-            ]
-            
-            // Create a booking object and populate it with sample data
-            booking = bookingDetails(BookedBy: "Sample", guestDetails: sampleGuests, totalRooms: "5", bookingDate: "2023-11-14")
-            
-            // Reload table data after adding sample guests
-            tableView.reloadData()
-        }
+        
+        return cell
+    }
+    
     @IBAction func AddGuestDetails(_ sender: UIButton) {
         if booking != nil {
-                let newGuest = GuestDetail(Name: "Emma", Age: 25, Gender: "Female")
-                booking!.addGuest(newGuest) // Add the new guest to the booking
-                tableView.reloadData() // Reload table data after adding a new guest
-            } else {
-                // Handle the case where booking is nil
-            }
-        
+            let newGuest = GuestDetail(Name: "Emma", Age: 25, Gender: "Female")
+            booking!.addGuest(newGuest) // Add the new guest to the booking
+            tableView.reloadData() // Reload table data after adding a new guest
+        } else {
+            // Handle the case where booking is nil
+        }
     }
+    
+    func addSampleData() {
+                let sampleGuests = [
+                    GuestDetail(Name: "John", Age: 30, Gender: "Male"),
+                    GuestDetail(Name: "Alice", Age: 25, Gender: "Female"),
+                    // Add more sample guests as needed
+                ]
+                
+                // Create a booking object and populate it with sample data
+                booking = bookingDetails(BookedBy: "Sample", guestDetails: sampleGuests, totalRooms: "5", bookingDate: "2023-11-14")
+                
+                // Reload table data after adding sample guests
+                tableView.reloadData()
+            }
+    
     func setupButton()
     {
         let customColor = UIColor(red: 5/255, green: 29/255, blue: 31/255, alpha: 0.7)
@@ -96,6 +94,7 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
         continueButton.layer.shadowRadius = 4
         continueButton.layer.shadowOpacity = 0.25
     }
+    
     @IBAction func continuePaymentPage(_ sender: Any) {
         let storyboard = UIStoryboard(name: "PaymentScreen", bundle: nil)
 
@@ -104,6 +103,7 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
                 self.navigationController?.pushViewController(viewController, animated: true)
 
     }
+    
     func setupBackButton()
         {
             let backButton = UIBarButtonItem()
@@ -113,37 +113,43 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
             // Set the custom back button for this view controller
             self.navigationItem.backBarButtonItem = backButton
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
 struct GuestDetail {
         var Name: String
         var Age: Int
         var Gender : String
+}
+
+class GuestCell: UITableViewCell{
+    
+    @IBOutlet weak var guestGenderLabel: UILabel!
+    @IBOutlet weak var guestAgeLabel: UILabel!
+    @IBOutlet weak var guestNameLabel: UILabel!
+    
+    func setupGuest(guest: GuestDetail)
+    {
+        guestNameLabel.text = guest.Name
+        guestAgeLabel.text = "\(guest.Age)"
+        guestGenderLabel.text = guest.Gender
     }
+}
+
 class bookingDetails {
         var totalRooms : String
         var BookedBy : String
         var BookingDate : String
         var guestDetails: [GuestDetail]
+    
     init(BookedBy: String, guestDetails: [GuestDetail] , totalRooms : String, bookingDate : String) {
         self.BookedBy = BookedBy
         self.guestDetails = guestDetails
         self.totalRooms = totalRooms
         self.BookingDate = bookingDate
     }
+    
     func addGuest(_ guestDetail: GuestDetail) {
         guestDetails.append(guestDetail)
     }
-
 }
 

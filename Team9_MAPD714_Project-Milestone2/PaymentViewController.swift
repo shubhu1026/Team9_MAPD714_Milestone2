@@ -93,9 +93,20 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func payButtonClicked(_ sender: Any){
+        /*
         let storyboard = UIStoryboard(name: "CheckoutScreen", bundle: nil)
         
         let viewController = storyboard.instantiateViewController(withIdentifier: "checkoutViewController") as! CheckoutViewController
+        
+        setupBackButton()
+        viewController.loadViewIfNeeded()
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+         */
+        
+        let storyboard = UIStoryboard(name: "Ticket", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ticket") as! TicketViewController
         
         setupBackButton()
         viewController.loadViewIfNeeded()
