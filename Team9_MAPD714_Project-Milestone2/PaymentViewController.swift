@@ -97,8 +97,19 @@ class PaymentViewController: UIViewController {
         
         let viewController = storyboard.instantiateViewController(withIdentifier: "checkoutViewController") as! CheckoutViewController
         
+        setupBackButton()
         viewController.loadViewIfNeeded()
         
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func setupBackButton()
+    {
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        backButton.tintColor = UIColor.black
+
+        // Set the custom back button for this view controller
+        self.navigationItem.backBarButtonItem = backButton
     }
 }
