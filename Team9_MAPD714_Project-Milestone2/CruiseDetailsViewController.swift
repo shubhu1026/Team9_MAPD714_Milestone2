@@ -64,14 +64,23 @@ class CruiseDetailsViewController: UIViewController {
         bookButton.layer.shadowRadius = 4
         bookButton.layer.shadowOpacity = 0.25
     }
+    func setupBackButton()
+        {
+            let backButton = UIBarButtonItem()
+            backButton.title = "Back"
+            backButton.tintColor = UIColor.black
+
+            // Set the custom back button for this view controller
+            self.navigationItem.backBarButtonItem = backButton
+    }
     
     @IBAction func bookButtonClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "PaymentScreen", bundle: nil)
+        let storyboard = UIStoryboard(name: "RoomDetails", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
-        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RoomDetailsViewController") as! RoomDetailsViewController
+        viewController.cruise = cruise
         viewController.loadViewIfNeeded()
-        
+        setupBackButton()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
