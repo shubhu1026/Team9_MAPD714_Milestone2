@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pexels-sơn-bờm-1703909.jpg",
+      "filename" : "bgPayment.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "bgPayment 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "bgPayment 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

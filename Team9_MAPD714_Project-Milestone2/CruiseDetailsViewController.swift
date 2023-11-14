@@ -65,4 +65,11 @@ class CruiseDetailsViewController: UIViewController {
         bookButton.layer.shadowOpacity = 0.25
     }
     
+    @IBAction func bookButtonClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "PaymentScreen", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }

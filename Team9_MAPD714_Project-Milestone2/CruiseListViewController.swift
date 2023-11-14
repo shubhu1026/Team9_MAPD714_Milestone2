@@ -112,13 +112,13 @@ class CruiseTableViewCell: UITableViewCell {
 //        cruiseImageView.image = cruiseImage
         cruiseImageView.contentMode = .scaleAspectFill // This sets the content mode to "cover"
         cruiseImageView.clipsToBounds = true // This ensures the image is clipped to the bounds
-        cruiseImageView.translatesAutoresizingMaskIntoConstraints = false // Enable auto layout constraints
+            //cruiseImageView.translatesAutoresizingMaskIntoConstraints = false // Enable auto layout constraints
 
         // Set the height to 200px
-        cruiseImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
-        if let superview = cruiseImageView.superview {
-            cruiseImageView.widthAnchor.constraint(equalTo: superview.widthAnchor, multiplier: 1.0).isActive = true
-        }
+        //cruiseImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        //if let superview = cruiseImageView.superview {
+            //cruiseImageView.widthAnchor.constraint(equalTo: superview.widthAnchor, //multiplier: 1.0).isActive = true
+        //}
 //        cruiseImageView.widthAnchor.constraint(equalTo: superview!.widthAnchor, multiplier: 1.0).isActive = true
 
         // Set the width to 100% of the parent view (assuming you are using Auto Layout)
