@@ -704,6 +704,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Book Now">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="21"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="bookButtonClicked:" destination="AXV-UB-Kyd" eventType="touchDown" id="bX8-uE-mgE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hin-Hl-4CR"/>

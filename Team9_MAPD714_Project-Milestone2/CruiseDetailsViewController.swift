@@ -70,6 +70,8 @@ class CruiseDetailsViewController: UIViewController {
         
         let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
         
+        viewController.loadViewIfNeeded()
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

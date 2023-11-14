@@ -14,6 +14,8 @@
 		DE3C672E2B02CD6F006317BA /* PassengerDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */; };
 		DE3C67302B02CD92006317BA /* PassengerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */; };
 		DE3C67332B02EB38006317BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67312B02EB38006317BA /* Main.storyboard */; };
+		DE3C67352B0310A6006317BA /* CheckoutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67342B0310A6006317BA /* CheckoutScreen.storyboard */; };
+		DE3C67372B0310B6006317BA /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C67362B0310B6006317BA /* CheckoutViewController.swift */; };
 		DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */; };
 		DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */; };
 		DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */; };
@@ -53,6 +55,8 @@
 		DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PassengerDetails.storyboard; sourceTree = "<group>"; };
 		DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerDetailsViewController.swift; sourceTree = "<group>"; };
 		DE3C67322B02EB38006317BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DE3C67342B0310A6006317BA /* CheckoutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckoutScreen.storyboard; sourceTree = "<group>"; };
+		DE3C67362B0310B6006317BA /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		DEACA93B2AF02F0700EC7CEE /* Team9_MAPD714_Project-Milestone2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team9_MAPD714_Project-Milestone2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */,
 				DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */,
 				DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */,
+				DE3C67342B0310A6006317BA /* CheckoutScreen.storyboard */,
+				DE3C67362B0310B6006317BA /* CheckoutViewController.swift */,
 				DE3C67272B02CCF3006317BA /* PaymentViewController.swift */,
 				DE3C67292B02CD43006317BA /* RoomDetails.storyboard */,
 				DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */,
@@ -265,6 +271,7 @@
 				DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */,
 				DE3C672E2B02CD6F006317BA /* PassengerDetails.storyboard in Resources */,
 				DE3C67332B02EB38006317BA /* Main.storyboard in Resources */,
+				DE3C67352B0310A6006317BA /* CheckoutScreen.storyboard in Resources */,
 				DE3C672A2B02CD43006317BA /* RoomDetails.storyboard in Resources */,
 				DEACA9482AF02F0A00EC7CEE /* Assets.xcassets in Resources */,
 			);
@@ -296,6 +303,7 @@
 				DEB8919C2AF0695C00A3DD0C /* CruiseListViewController.swift in Sources */,
 				DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */,
 				DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */,
+				DE3C67372B0310B6006317BA /* CheckoutViewController.swift in Sources */,
 				DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */,
 				DE3C672C2B02CD52006317BA /* RoomDetailsViewController.swift in Sources */,
 				DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */,
