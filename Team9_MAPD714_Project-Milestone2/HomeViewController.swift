@@ -19,6 +19,8 @@ import UIKit
 
 class HomeViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
     
+    let databaseManager = DatabaseManager()
+    
     var temp = 1
     var tapGesture: UITapGestureRecognizer?
     @IBOutlet weak var selectDestinationDropdown: UITextField!
@@ -69,6 +71,7 @@ class HomeViewController: UIViewController , UIPickerViewDataSource, UIPickerVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         selectDestinationDropdownView.delegate = self
         selectDestinationDropdownView.dataSource = self
         selectPortDropdownView.delegate = self

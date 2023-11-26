@@ -18,6 +18,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    let databaseManager = DatabaseManager()
 
     @IBOutlet var loginTitle: UILabel!
     @IBOutlet var loginButton: UIButton!
@@ -92,46 +94,49 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonClicked(_ sender: Any) {
-        let storedEmail = UserDefaults.standard.object(forKey: "email")
-        let storedPassword = UserDefaults.standard.object(forKey: "password")
-        
-        if let email = storedEmail as? String{
-            if let password = storedPassword as? String{
-                if(email != emailTextField.text || password != passwordTextField.text)
-                {
-                    showPasswordIncorrectAlert()
-                    return
-                }
-            }
+        guard let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty else {
+            showAlert(with: "Error", message: "Please enter both email and password")
+            return
         }
-        
+
+        if databaseManager.loginUser(email: email, password: password) {
+            // Successful login
+            print("Login successful!")
+            handleSuccessfulLogin()
+        } else {
+            // Show an alert indicating login failed
+            showAlert(with: "Error", message: "Invalid email or password. Please try again.")
+        }
+    }
+    
+    func handleSuccessfulLogin() {
+        showAlert(with: "Success", message: "Logged in successfully") { [weak self] in
+            guard let self = self else { return }
+            self.navigateToCruiseList()
+        }
+    }
+    
+    func navigateToCruiseList() {
         let cruiseListViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseListViewController") as! CruiseListViewController
-        
         cruiseListViewController.loadViewIfNeeded()
-        
         setupBackButton()
-        
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
-    
-    func showPasswordIncorrectAlert() {
-        let alert = UIAlertController(title: "Wrong Password/ Email",
-                                          message: "The password/ email you entered is incorrect. Please try again.",
-                                          preferredStyle: .alert)
 
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    func showAlert(with title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        }
         alert.addAction(okAction)
-
         present(alert, animated: true, completion: nil)
     }
-    
-    func setupBackButton()
-    {
+
+    func setupBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         backButton.tintColor = UIColor.black
-
-        // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
     }
 }

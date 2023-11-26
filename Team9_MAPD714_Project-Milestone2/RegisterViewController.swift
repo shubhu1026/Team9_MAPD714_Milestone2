@@ -17,6 +17,8 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    
+    let databaseManager = DatabaseManager()
 
     @IBOutlet var registerTitle: UILabel!
     @IBOutlet var registerButton: UIButton!
@@ -27,18 +29,21 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupBackground()
-        setupCardView()
-        // Do any additional setup after loading the view.
+        setupUI()
         self.isModalInPresentation = true
     }
-    // setup card 
+    
+    func setupUI() {
+        setupCardView()
+        setupBackground()
+        setupButton()
+    }
+    
+    // setup card
     func setupCardView()
     {
         cardView.layer.cornerRadius = 10
         cardView.layer.masksToBounds = true
-        
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -46,10 +51,9 @@ class RegisterViewController: UIViewController {
         cardView.layer.masksToBounds = false
         
         registerTitle.textColor = UIColor.white
-        
-        setupButton()
     }
-     // changing background image
+    
+    // changing background image
     func setupBackground() {
         let background = UIImage(named: "bgLoginRegister")
         
@@ -61,7 +65,6 @@ class RegisterViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(imageView)
         
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -70,12 +73,12 @@ class RegisterViewController: UIViewController {
         
         self.view.sendSubviewToBack(imageView)
     }
+    
     // changing button css
     func setupButton()
     {
         let customColor = UIColor(red: 5/255, green: 29/255, blue: 31/255, alpha: 0.7)
         registerButton.tintColor = customColor
-        
         registerButton.layer.shadowColor = UIColor.black.cgColor
         registerButton.layer.shadowOffset = CGSize(width: 4, height: 8)
         registerButton.layer.shadowRadius = 4
@@ -87,30 +90,62 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
-         // verifying password 
-        if(passwordTextField.text == confirmPasswordTextField.text)
-        {
-            UserDefaults.standard.set(emailTextField.text!, forKey: "email")
-            UserDefaults.standard.set(passwordTextField.text!, forKey: "password")
+        guard let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty else {
+                showAlert(with: "Error", message: "All fields are required")
+                return
         }
-        
-        
+
+        guard password == confirmPassword else {
+            showAlert(with: "Error", message: "Passwords do not match")
+            return
+        }
+                
+        guard !databaseManager.doesEmailExist(email: email) else {
+            showAlert(with: "Error", message: "Email already exists. Please use a different email.")
+            return
+        }
+                
+        let name = "Name"
+        let address = "Address"
+        let city = "City"
+        let country = "Country"
+                
+        if databaseManager.registerUser(name: name, email: email, password: password, address: address, city: city, country: country) {
+                handleSuccessfulRegistration()
+            } else {
+                showAlert(with: "Error", message: "Registration failed. Please try again.")
+        }
+    }
+            
+    func handleSuccessfulRegistration() {
+        showAlert(with: "Success", message: "User registered successfully") { [weak self] in
+            guard let self = self else { return }
+            self.navigateToCruiseList()
+        }
+    }
+            
+    func navigateToCruiseList() {
         let cruiseListViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseListViewController") as! CruiseListViewController
-        
         cruiseListViewController.loadViewIfNeeded()
-        
         setupBackButton()
-          // Navigating to next view controller
         self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
-    
-    func setupBackButton()
-    {
+            
+    func showAlert(with title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+            
+    func setupBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         backButton.tintColor = UIColor.black
-
-        // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
     }
 }

@@ -21,19 +21,8 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
     
     @IBOutlet var tableView: UITableView!
         
-    let cruises = [
-        Cruise(name: "Caribbean Breeze", nights: 7, departurePort: "Miami", cost: 1000, imageName: "cruiseImage1", numPorts: 5),
-            Cruise(name: "Alaskan Adventure", nights: 10, departurePort: "Seattle", cost: 1500, imageName: "cruiseImage2", numPorts: 7),
-            Cruise(name: "Mediterranean Marvel", nights: 8, departurePort: "Barcelona", cost: 1400, imageName: "cruiseImage3", numPorts: 6),
-            Cruise(name: "Hawaiian Paradise", nights: 12, departurePort: "Honolulu", cost: 1800, imageName: "cruiseImage4", numPorts: 9),
-            Cruise(name: "Tropical Escape", nights: 6, departurePort: "Cancun", cost: 1200, imageName: "cruiseImage5", numPorts: 4),
-            Cruise(name: "Exotic Far East", nights: 14, departurePort: "Singapore", cost: 2200, imageName: "cruiseImage6", numPorts: 10),
-            Cruise(name: "Tahitian Treasures", nights: 9, departurePort: "Papeete", cost: 1700, imageName: "cruiseImage7", numPorts: 6),
-            Cruise(name: "Baltic Beauty", nights: 11, departurePort: "Copenhagen", cost: 1600, imageName: "cruiseImage8", numPorts: 8),
-            Cruise(name: "African Safari Cruise", nights: 13, departurePort: "Cape Town", cost: 2100, imageName: "cruiseImage9", numPorts: 9),
-            Cruise(name: "Galapagos Explorer", nights: 7, departurePort: "Quito", cost: 1900, imageName: "cruiseImage1", numPorts: 4)
-    ]
-
+    var cruises: [Cruise] = []
+    var dbManager: DatabaseManager!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +30,9 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
         // Set the data source for the table view
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.reloadData()
+        
+        dbManager = DatabaseManager()
+        fetchCruiseData()
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
@@ -49,6 +40,11 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
 
         // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
+    }
+    
+    func fetchCruiseData() {
+        cruises = dbManager.getCruises()
+        tableView.reloadData()
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,17 +72,19 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
 
 class Cruise {
     var name: String
+    var cost: Int
     var nights: Int
-    var departurePort: String
-    var cost: Double
+    var departureDestination: String
+    var departureDate: String
     var imageName: String
     var numPorts: Int
     
-    init(name: String, nights: Int, departurePort: String, cost: Double, imageName: String, numPorts: Int) {
+    init(name: String, cost: Int, nights: Int, departureDestination: String, departureDate: String, numPorts: Int, imageName: String) {
         self.name = name
-        self.nights = nights
-        self.departurePort = departurePort
         self.cost = cost
+        self.nights = nights
+        self.departureDestination = departureDestination
+        self.departureDate = departureDate
         self.imageName = imageName
         self.numPorts = numPorts
     }
@@ -126,7 +124,7 @@ class CruiseTableViewCell: UITableViewCell {
         
         nameLabel.text = cruise.name
         nightsLabel.text = "\(cruise.nights) Nights"
-        departurePortLabel.text = "\(cruise.departurePort)"
+        departurePortLabel.text = "\(cruise.departureDestination)"
         costLabel.text = "$\(cruise.cost)"
         numPortsLabel.text = "\(cruise.numPorts) Ports"
     }

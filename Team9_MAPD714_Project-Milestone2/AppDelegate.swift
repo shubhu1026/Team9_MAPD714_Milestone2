@@ -11,9 +11,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let databaseManager = DatabaseManager()
+        
+        databaseManager.createTables()
+        databaseManager.prepopulateCruiseData()
+        
         // Override point for customization after application launch.
         let barButtonItemAppearance = UIBarButtonItem.appearance()
         barButtonItemAppearance.tintColor = UIColor.white
+        
+#if arch(i386) || arch(x86_64)
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+  NSLog("Document Path: %@", documentsPath)
+#endif
         
         return true
     }

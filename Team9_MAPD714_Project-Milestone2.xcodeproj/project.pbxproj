@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE0D798D2B12D493007F31F8 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D798C2B12D493007F31F8 /* DatabaseManager.swift */; };
+		DE0D79902B12D4B8007F31F8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0D798F2B12D4B8007F31F8 /* libsqlite3.0.tbd */; };
+		DE0D79922B12D4BF007F31F8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0D79912B12D4BF007F31F8 /* libsqlite3.tbd */; };
 		DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */; };
 		DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C67272B02CCF3006317BA /* PaymentViewController.swift */; };
 		DE3C672A2B02CD43006317BA /* RoomDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67292B02CD43006317BA /* RoomDetails.storyboard */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE0D798C2B12D493007F31F8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		DE0D798F2B12D4B8007F31F8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		DE0D79912B12D4BF007F31F8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentScreen.storyboard; sourceTree = "<group>"; };
 		DE3C67272B02CCF3006317BA /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		DE3C67292B02CD43006317BA /* RoomDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoomDetails.storyboard; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE0D79922B12D4BF007F31F8 /* libsqlite3.tbd in Frameworks */,
+				DE0D79902B12D4B8007F31F8 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE0D798E2B12D4B8007F31F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE0D79912B12D4BF007F31F8 /* libsqlite3.tbd */,
+				DE0D798F2B12D4B8007F31F8 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DEACA9322AF02F0700EC7CEE = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +132,7 @@
 				DEACA9542AF02F0B00EC7CEE /* Team9_MAPD714_Project-Milestone2Tests */,
 				DEACA95E2AF02F0B00EC7CEE /* Team9_MAPD714_Project-Milestone2UITests */,
 				DEACA93C2AF02F0700EC7CEE /* Products */,
+				DE0D798E2B12D4B8007F31F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +161,7 @@
 				DE3C67362B0310B6006317BA /* CheckoutViewController.swift */,
 				DE3C67272B02CCF3006317BA /* PaymentViewController.swift */,
 				DE3C67292B02CD43006317BA /* RoomDetails.storyboard */,
+				DE0D798C2B12D493007F31F8 /* DatabaseManager.swift */,
 				DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */,
 				DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */,
 				DE3C67312B02EB38006317BA /* Main.storyboard */,
@@ -313,6 +332,7 @@
 			files = (
 				DE3C67302B02CD92006317BA /* PassengerDetailsViewController.swift in Sources */,
 				DEACA96F2AF053B200EC7CEE /* LoginViewController.swift in Sources */,
+				DE0D798D2B12D493007F31F8 /* DatabaseManager.swift in Sources */,
 				DEB8919C2AF0695C00A3DD0C /* CruiseListViewController.swift in Sources */,
 				DEB8919A2AF0617A00A3DD0C /* RegisterViewController.swift in Sources */,
 				DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */,
