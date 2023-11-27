@@ -12,6 +12,10 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     
+    @IBOutlet weak var cardNoTextField: UITextField!
+    @IBOutlet weak var CardholderTextField: UITextField!
+    @IBOutlet weak var validityTextField: UITextField!
+    @IBOutlet weak var cvcTextField: UITextField!
     
     @IBOutlet weak var applePayButton: UIButton!
     @IBOutlet weak var creditDebitButton: UIButton!
@@ -19,11 +23,9 @@ class PaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         setupBackground()
         setupButtons()
         setupCardView()
-        // Do any additional setup after loading the view.
     }
     
     func setupBackground() {
@@ -37,7 +39,6 @@ class PaymentViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(imageView)
 
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -73,7 +74,6 @@ class PaymentViewController: UIViewController {
         cardView.layer.cornerRadius = 10
         cardView.layer.masksToBounds = true
         
-        //cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowOpacity = 0.1
         cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
         cardView.layer.shadowRadius = 2
@@ -93,16 +93,7 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func payButtonClicked(_ sender: Any){
-        /*
-        let storyboard = UIStoryboard(name: "CheckoutScreen", bundle: nil)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "checkoutViewController") as! CheckoutViewController
-        
-        setupBackButton()
-        viewController.loadViewIfNeeded()
-        
-        self.navigationController?.pushViewController(viewController, animated: true)
-         */
+        if validateCardInfo() {
         
         let storyboard = UIStoryboard(name: "Ticket", bundle: nil)
         
@@ -112,6 +103,9 @@ class PaymentViewController: UIViewController {
         viewController.loadViewIfNeeded()
         
         self.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            displayErrorAlert(message: "Invalid card details. Please check and try again.")
+        }
     }
     
     func setupBackButton()
@@ -122,5 +116,37 @@ class PaymentViewController: UIViewController {
 
         // Set the custom back button for this view controller
         self.navigationItem.backBarButtonItem = backButton
+    }
+
+    func validateCardInfo() -> Bool {
+        // Card Number Validation
+        guard let cardNumber = cardNoTextField.text, cardNumber.count >= 16 else {
+            return false
+        }
+        
+        // Cardholder Name Validation
+        guard let cardholderName = CardholderTextField.text, !cardholderName.isEmpty else {
+            return false
+        }
+        
+        // Validity (Date) Validation (Assuming MM/YY format)
+        guard let validity = validityTextField.text, validity.count == 5 else {
+            return false
+        }
+        
+        // CVC Validation
+        guard let cvc = cvcTextField.text, cvc.count == 3 else {
+            return false
+        }
+        
+        return true // All fields are valid
+    }
+
+    func displayErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
