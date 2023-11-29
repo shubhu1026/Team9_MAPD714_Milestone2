@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8981E826-D5B9-434E-B923-165D040CE494"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "CruiseDetailsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - 8a4990c92c1d2ae2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - db79f97e63950251"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "137">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - 15daa7420221154e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController&gt;"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - c9b31a6dce7c4099"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController&gt;"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "94">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - 72db1e522549cbf0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.__deallocating_deinit"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - db79f97e63950251"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - c9b31a6dce7c4099"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController&gt;"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "119">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - db79f97e63950251"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "181">
+               </Location>
+               <Location
+                  uuid = "C556D8E1-9041-45A3-818A-1E603887BF5B - c9b31a6dce7c4099"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Team9_MAPD714_Project_Milestone2.CruiseDetailsViewController&gt;"
+                  moduleName = "Team9_MAPD714_Project-Milestone2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubhampatel/Documents/Xcode/Team9_MAPD714_Milestone2/Team9_MAPD714_Project-Milestone2/CruiseDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "129">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

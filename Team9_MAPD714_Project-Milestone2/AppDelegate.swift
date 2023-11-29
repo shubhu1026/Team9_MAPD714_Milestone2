@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         databaseManager.createTables()
         databaseManager.prepopulateCruiseData()
+        databaseManager.prepopulateCruiseItinerary()
         
         // Override point for customization after application launch.
         let barButtonItemAppearance = UIBarButtonItem.appearance()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -65,7 +65,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-Ma-vFv">
                                         <rect key="frame" x="0.0" y="201.66666666666666" width="390" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Continue"/>
                                         <connections>
                                             <action selector="continueButtonFunction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Mod-bj-SG6"/>
                                         </connections>
@@ -93,6 +93,7 @@
                         <outlet property="cardView" destination="0Dk-eB-h7E" id="4FP-8z-T0b"/>
                         <outlet property="continueButton" destination="Ybh-Ma-vFv" id="xbG-SD-qYT"/>
                         <outlet property="cruiseName" destination="LfK-rG-dbH" id="HbU-5W-axo"/>
+                        <outlet property="roomSlider" destination="0Dm-DN-3jm" id="oeQ-LT-sHN"/>
                         <outlet property="totalRooms" destination="Fb3-e3-1tk" id="g4B-g3-Jr8"/>
                     </connections>
                 </viewController>

@@ -17,21 +17,70 @@
 
 import UIKit
 
-class CruiseDetailsViewController: UIViewController {
+class CruiseDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var cruise: Cruise?
+    
+    let dbManager = DatabaseManager()
+    
+    @IBOutlet weak var cruiseDetailsItineraryTableView: UITableView!
     
     @IBOutlet weak var cruiseName: UILabel!
     @IBOutlet weak var bookButton: UIButton!
     
+    var itenary: [Itinerary] = [
+        Itinerary(date: "2023-11-14", place: "Sample Place 1", time: "12:00 PM", imageName: "cruiseImage1"),
+        Itinerary(date: "2023-11-15", place: "Sample Place 2", time: "3:30 PM", imageName: "cruiseImage2"),
+        Itinerary(date: "2023-11-16", place: "Sample Place 3", time: "2:10 PM", imageName: "cruiseImage3"),
+        Itinerary(date: "2023-11-17", place: "Sample Place 4", time: "6:00 PM", imageName: "cruiseImage4"),
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        cruiseDetailsItineraryTableView.delegate = self
+        cruiseDetailsItineraryTableView.dataSource = self
+        
         setupBackground()
         if let cruise = cruise {
             cruiseName.text = cruise.name
+            
+            fetchItineraryForSelectedCruise(cruiseName: cruise.name)
         }
         setupButton()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the selected item
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           // Set the desired height for the cell
+           return 100.0
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itenary.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CruiseDetailsItineraryCell", for: indexPath) as! CruiseDetailsItineraryTableViewCell
+        // Add a separator inset to the cell
+        let cruiseItinerary = itenary[indexPath.row]
+        cell.setupCruiseDetailsItineraryCell(itinerary: cruiseItinerary)
+        return cell
+    }
+    
+    func fetchItineraryForSelectedCruise(cruiseName: String) {
+        if let cruiseID = dbManager.getCruiseID(forCruiseName: cruiseName) {
+            // Use the obtained cruiseID to fetch itinerary
+            let itineraryForSelectedCruise = dbManager.fetchItineraryForCruise(withID: cruiseID)
+            
+            // Update your 'data' array with the obtained itinerary
+            itenary = itineraryForSelectedCruise
+            
+            // Reload the table view to reflect the updated data
+            cruiseDetailsItineraryTableView.reloadData()
+        } else {
+            print("Cruise ID not found for the given cruise name")
+        }
     }
     
     func setupBackground() {

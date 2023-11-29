@@ -230,6 +230,115 @@ class DatabaseManager {
         }
     }
     
+    func prepopulateCruiseItinerary() {
+        let cruiseData: [(String, [(String, String, String)])] = [
+            ("Caribbean Breeze", [
+                ("Port of Miami", "10:00 AM", "2023-01-01"),
+                ("Nassau", "12:00 PM", "2023-01-02"),
+                ("CocoCay", "02:00 PM", "2023-01-03"),
+                ("St. Thomas", "04:00 PM", "2023-01-04"),
+                ("St. Maarten", "06:00 PM", "2023-01-05")
+            ]),
+            ("Mediterranean Marvel", [
+                ("Barcelona", "10:00 AM", "2023-02-01"),
+                ("Marseille", "12:00 PM", "2023-02-02"),
+                ("Rome", "02:00 PM", "2023-02-03"),
+                ("Athens", "04:00 PM", "2023-02-04"),
+                ("Venice", "06:00 PM", "2023-02-05")
+            ]),
+            ("Alaskan Adventure", [
+                ("Seattle", "10:00 AM", "2023-03-01"),
+                ("Juneau", "12:00 PM", "2023-03-02"),
+                ("Skagway", "02:00 PM", "2023-03-03"),
+                ("Ketchikan", "04:00 PM", "2023-03-04"),
+                ("Anchorage", "06:00 PM", "2023-03-05")
+            ]),
+            ("Hawaiian Paradise", [
+                ("Honolulu", "10:00 AM", "2023-04-01"),
+                ("Maui", "12:00 PM", "2023-04-02"),
+                ("Kauai", "02:00 PM", "2023-04-03"),
+                ("Hilo", "04:00 PM", "2023-04-04"),
+                ("Big Island", "06:00 PM", "2023-04-05")
+            ]),
+            ("Exotic Far East", [
+                ("Singapore", "10:00 AM", "2023-06-01"),
+                ("Phuket", "12:00 PM", "2023-06-02"),
+                ("Ho Chi Minh City", "02:00 PM", "2023-06-03"),
+                ("Hong Kong", "04:00 PM", "2023-06-04"),
+                ("Tokyo", "06:00 PM", "2023-06-05")
+            ]),
+            ("Tahitian Treasures", [
+                ("Papeete", "10:00 AM", "2023-07-01"),
+                ("Bora Bora", "12:00 PM", "2023-07-02"),
+                ("Moorea", "02:00 PM", "2023-07-03"),
+                ("Raiatea", "04:00 PM", "2023-07-04"),
+                ("Huahine", "06:00 PM", "2023-07-05")
+            ]),
+            ("Baltic Beauty", [
+                ("Copenhagen", "10:00 AM", "2023-08-01"),
+                ("Stockholm", "12:00 PM", "2023-08-02"),
+                ("St. Petersburg", "02:00 PM", "2023-08-03"),
+                ("Helsinki", "04:00 PM", "2023-08-04"),
+                ("Tallinn", "06:00 PM", "2023-08-05")
+            ]),
+            ("Tropical Escape", [
+                ("Cancun", "10:00 AM", "2023-05-01"),
+                ("Cozumel", "12:00 PM", "2023-05-02"),
+                ("Roatan", "02:00 PM", "2023-05-03"),
+                ("Belize", "04:00 PM", "2023-05-04"),
+                ("Costa Maya", "06:00 PM", "2023-05-05")
+            ]),
+            ("African Safari Cruise", [
+                ("Cape Town", "10:00 AM", "2023-09-01"),
+                ("Port Elizabeth", "12:00 PM", "2023-09-02"),
+                ("Durban", "02:00 PM", "2023-09-03"),
+                ("Maputo", "04:00 PM", "2023-09-04"),
+                ("Richards Bay", "06:00 PM", "2023-09-05")
+            ]),
+            ("Galapagos Explorer", [
+                ("Quito", "10:00 AM", "2023-10-01"),
+                ("Baltra Island", "12:00 PM", "2023-10-02"),
+                ("San Cristobal Island", "02:00 PM", "2023-10-03"),
+                ("Isabela Island", "04:00 PM", "2023-10-04"),
+                ("Santa Cruz Island", "06:00 PM", "2023-10-05")
+            ])
+        ]
+        
+        for cruise in cruiseData {
+            if let cruiseID = getCruiseID(forCruiseName: cruise.0) {
+                for portInfo in cruise.1 {
+                    let portName = portInfo.0
+                    let time = portInfo.1
+                    let date = portInfo.2
+                    insertItineraryForCruise(cruiseID: cruiseID, portName: portName, time: time, date: date)
+                }
+            }
+        }
+    }
+
+
+    func insertItineraryForCruise(cruiseID: Int, portName: String, time: String, date: String) {
+        let insertStatementString = "INSERT INTO Cruise_Itinerary (cruise_id, port_name, time, date) VALUES (?, ?, ?, ?);"
+
+        var insertStatement: OpaquePointer?
+
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(insertStatement, 1, Int32(cruiseID))
+            sqlite3_bind_text(insertStatement, 2, (portName as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, (time as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 4, (date as NSString).utf8String, -1, nil)
+
+            if sqlite3_step(insertStatement) != SQLITE_DONE {
+                print("Error inserting cruise itinerary data")
+            }
+
+            sqlite3_finalize(insertStatement)
+        } else {
+            print("Error preparing insert statement for cruise itinerary")
+        }
+    }
+
+    
     func getCruises() -> [Cruise] {
         var cruises: [Cruise] = []
         var queryStatement: OpaquePointer?
@@ -257,6 +366,54 @@ class DatabaseManager {
 
         return cruises
     }
+    
+    func getCruiseID(forCruiseName name: String) -> Int? {
+        var cruiseID: Int?
+
+        var queryStatement: OpaquePointer?
+
+        let query = "SELECT cruise_id FROM Cruises WHERE cruise_name = ?"
+
+        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+            sqlite3_bind_text(queryStatement, 1, (name as NSString).utf8String, -1, nil)
+
+            if sqlite3_step(queryStatement) == SQLITE_ROW {
+                cruiseID = Int(sqlite3_column_int(queryStatement, 0))
+            }
+        }
+
+        sqlite3_finalize(queryStatement)
+
+        return cruiseID
+    }
+
+    
+    func fetchItineraryForCruise(withID cruiseID: Int) -> [Itinerary] {
+        var itineraries: [Itinerary] = []
+        var queryStatement: OpaquePointer?
+
+        let query = "SELECT port_name, time, date FROM Cruise_Itinerary WHERE cruise_id = ?"
+
+        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(queryStatement, 1, Int32(cruiseID))
+
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let portName = String(cString: sqlite3_column_text(queryStatement, 0))
+                let time = String(cString: sqlite3_column_text(queryStatement, 1))
+                let date = String(cString: sqlite3_column_text(queryStatement, 2))
+
+                let itinerary = Itinerary(date: date, place: portName, time: time, imageName: "imageName")
+                itineraries.append(itinerary)
+            }
+        } else {
+            print("SELECT statement for itinerary could not be prepared")
+        }
+
+        sqlite3_finalize(queryStatement)
+
+        return itineraries
+    }
+
 
 
     deinit {

@@ -19,12 +19,15 @@ import UIKit
 
 class RoomDetailsViewController: UIViewController {
     @IBOutlet weak var cruiseName: UILabel!
+    
     var cruise: Cruise?
+    
+    @IBOutlet weak var roomSlider: UISlider!
+    
     @IBOutlet weak var cardView: UIStackView!
     @IBOutlet weak var totalRooms: UILabel!
     @IBOutlet weak var continueButton: UIButton!
-//    @IBOutlet weak var continueButton: UIButton!
-//    @IBOutlet weak var cardView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let cruise = cruise {
@@ -43,12 +46,12 @@ class RoomDetailsViewController: UIViewController {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
         cardView.layer.shadowRadius = 2
         cardView.layer.masksToBounds = false
-        
-//        titleLabel.textColor = UIColor.white
     }
+    
     @IBAction func onRoomSliderChange(_ sender: UISlider) {
         totalRooms.text = "\(lroundf(sender.value))"
     }
+    
     func setupButton()
     {
         let customColor = UIColor(red: 5/255, green: 29/255, blue: 31/255, alpha: 0.7)
@@ -59,56 +62,28 @@ class RoomDetailsViewController: UIViewController {
         continueButton.layer.shadowRadius = 4
         continueButton.layer.shadowOpacity = 0.25
     }
+    
     func setupBackButton()
         {
             let backButton = UIBarButtonItem()
             backButton.title = "Back"
             backButton.tintColor = UIColor.black
 
-            // Set the custom back button for this view controller
             self.navigationItem.backBarButtonItem = backButton
     }
     
     @IBAction func continueButtonFunction(_ sender: Any) {
+        let roomSliderValue = lroundf(roomSlider.value)
+        UserDefaults.standard.set(roomSliderValue, forKey: "numberOfRooms")
+
+        
         let storyboard = UIStoryboard(name: "PassengerDetails", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "PassengerDetailsViewController") as!
-        PassengerDetailsViewController
-                    viewController.totalRooms = totalRooms.text
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PassengerDetailsViewController") as! PassengerDetailsViewController
+            
+        viewController.totalRooms = totalRooms.text
         viewController.cruise = cruise
         setupBackButton()
-                self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    
-//    class Cruise {
-//        var name: String
-//        var nights: Int
-//        var departurePort: String
-//        var cost: Double
-//        var imageName: String
-//        var numPorts: Int
-//        
-//        init(name: String, nights: Int, departurePort: String, cost: Double, imageName: String, numPorts: Int) {
-//            self.name = name
-//            self.nights = nights
-//            self.departurePort = departurePort
-//            self.cost = cost
-//            self.imageName = imageName
-//            self.numPorts = numPorts
-//        }
-//    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
 }
 

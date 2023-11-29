@@ -98,9 +98,9 @@ class PassengerDetailsViewController:  UIViewController, UITableViewDelegate, UI
     @IBAction func continuePaymentPage(_ sender: Any) {
         let storyboard = UIStoryboard(name: "PaymentScreen", bundle: nil)
 
-                let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
         setupBackButton()
-                self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
 
     }
     

@@ -63,7 +63,9 @@ class CruiseListViewController: UIViewController,UITableViewDataSource, UITableV
         let selectedCruise = cruises[indexPath.row]
         
         // Perform the desired action, e.g., push a new view controller
-        let detailsViewController = self.storyboard!.instantiateViewController(withIdentifier: "CruiseDetailsViewController") as! CruiseDetailsViewController
+        let storyboard = UIStoryboard(name: "CruiseDetailsView", bundle: nil)
+        
+        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "CruiseDetailsViewController") as! CruiseDetailsViewController
         
         detailsViewController.cruise = selectedCruise // Pass data to the details view
         navigationController?.pushViewController(detailsViewController, animated: true)
