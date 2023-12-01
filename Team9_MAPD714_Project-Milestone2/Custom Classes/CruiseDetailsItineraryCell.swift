@@ -13,10 +13,10 @@ class CruiseDetailsItineraryTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var spotNameLabel: UILabel!
     
-    func setupCruiseDetailsItineraryCell(itinerary: Itinerary)
+    func setupCruiseDetailsItineraryCell(portInfo: PortInfo)
     {
-        timeLabel.text = itinerary.time
-        dateLabel.text = itinerary.date
-        spotNameLabel.text = itinerary.place
+        timeLabel.text = portInfo.time
+        dateLabel.text = portInfo.date
+        spotNameLabel.text = portInfo.name
     }
 }

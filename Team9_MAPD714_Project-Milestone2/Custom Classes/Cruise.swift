@@ -7,6 +7,8 @@
 
 import Foundation
 
+let dbManager = DatabaseManager()
+
 class Cruise {
     var name: String
     var cruiseImageName: String
@@ -18,6 +20,7 @@ class Cruise {
     var departureDate: String
     var avgPersonCost: Double
     var isFavourite: Bool = false
+    var visitingPorts : [PortInfo]
     
     init(name: String, imageName: String, nights: Int, operatorName: String, tripFrom: String, tripTo: String, portsCount: Int, departureDate: String, avgPersonCost: Double) {
         self.name = name
@@ -29,5 +32,13 @@ class Cruise {
         self.portsCount = portsCount
         self.departureDate = departureDate
         self.avgPersonCost = avgPersonCost
+        self.visitingPorts = dbManager.fetchPortsForCruise(name: name)
     }
+}
+
+struct PortInfo {
+    let name: String
+    let time: String
+    let date: String
+    let portImage : String
 }

@@ -1,0 +1,209 @@
+//
+//  GuestDetailsViewController.swift
+//  IOS_Design_Practice
+//
+//  Created by Anmol Sharma on 2023-11-27.
+//
+
+import UIKit
+class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var guestDetailsTable: UITableView!
+    var selectedCruise: Cruise?
+    @IBOutlet weak var cruiseName: UILabel!
+    @IBOutlet weak var guestDetailsModal: UIView!
+    
+    var totalRooms : String?
+
+    @IBOutlet weak var totalRoomLabel: UILabel!
+    var guestDetails : [GuestDetail] = [
+        GuestDetail(name: "Anmol Sharma", gender: "Male", age: 24),
+        GuestDetail(name: "Aman Sharma", gender: "Male", age: 21),
+        GuestDetail(name: "Nitika Sharma", gender: "Female", age: 22),
+    ]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Apply styles to guestDetailsModal
+        guestDetailsModal.layer.cornerRadius = 12
+        guestDetailsModal.layer.borderWidth = 1
+        guestDetailsModal.layer.borderColor = UIColor(hex: "#A7A7A7").cgColor
+        guestDetailsModal.backgroundColor = UIColor.white
+        guestDetailsModal.layer.shadowColor = UIColor.black.cgColor
+        guestDetailsModal.layer.shadowOffset = CGSize(width: 0, height: 4)
+        guestDetailsModal.layer.shadowRadius = 4
+        guestDetailsModal.layer.shadowOpacity = 0.25
+        if let selectedCruise = selectedCruise {
+                    // Example: Update UI elements with selected cruise data
+            cruiseName.text = selectedCruise.name
+                    print("Selected Cruise Name: \(selectedCruise.name)")
+                    // Update your UI elements here using selectedCruise properties
+        }
+        
+        guestDetailsTable.delegate = self
+        guestDetailsTable.dataSource = self
+        guestDetailsTable.reloadData()
+
+        // Do any additional setup after loading the view.
+    }
+    @IBAction func totalRoomsSelected(_ sender: UISlider) {
+        totalRooms = "\(lroundf(sender.value))"
+        totalRoomLabel.text = "Total Rooms - \(lroundf(sender.value))"
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        // Get the selected item
+//        let selectedCruise = cruiseShips[indexPath.row]
+//        let storyboard = UIStoryboard(name: "cruiseDetailsView", bundle: nil)
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "cruiseDetailsViewController") as! CruiseDetailsViewController
+//        viewController.selectedCruise = selectedCruise
+//        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           // Set the desired height for the cell
+           return 60.0
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return guestDetails.count
+   }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GuestDetailsCell", for: indexPath) as! GuestDetailsViewCell
+        // Add a separator inset to the cell
+        let guestDetail = guestDetails[indexPath.row]
+        cell.guestName.text = guestDetail.name
+        cell.GuestDetails.text = "(\(guestDetail.gender), \(guestDetail.age) yrs)"
+        cell.editGuest.addTarget(self, action: #selector(editGuestButtonTapped(_:)), for: .touchUpInside)
+        cell.deleteGuest.addTarget(self, action: #selector(deleteGuestButtonTapped(_:)), for: .touchUpInside)
+        return cell
+    }
+    @objc func editGuestButtonTapped(_ sender: UIButton) {
+           print("edit Guest Button Tapped")
+           // Get the index path of the cell
+           let buttonPosition = sender.convert(CGPoint.zero, to: self.guestDetailsTable)
+           if let indexPath = self.guestDetailsTable.indexPathForRow(at: buttonPosition) {
+
+               // Get the selected guest
+               let selectedGuest = guestDetails[indexPath.row]
+
+               // Create a UIAlertController
+               let alertController = UIAlertController(title: "Edit Guest", message: nil, preferredStyle: .alert)
+
+               // Add text fields with existing guest details
+               alertController.addTextField { textField in
+                   textField.placeholder = "Enter Guest Name"
+                   textField.text = selectedGuest.name
+               }
+               alertController.addTextField { textField in
+                   textField.placeholder = "Enter Gender"
+                   textField.text = selectedGuest.gender
+               }
+               alertController.addTextField { textField in
+                   textField.placeholder = "Enter Age"
+                   textField.text = "\(selectedGuest.age)"
+                   textField.keyboardType = .numberPad
+               }
+
+               // Create actions for OK and Cancel buttons
+               let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                   // Retrieve updated guest details from text fields
+                   if let name = alertController.textFields?[0].text,
+                      let gender = alertController.textFields?[1].text,
+                      let ageString = alertController.textFields?[2].text,
+                      let age = Int(ageString) {
+                       // Update the selected guest with new details
+                       self.guestDetails[indexPath.row] = GuestDetail(name: name, gender: gender, age: age)
+                       // Reload the table view to reflect the changes
+                       self.guestDetailsTable.reloadData()
+                   }
+               }
+               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+               // Add actions to the alert controller
+               alertController.addAction(okAction)
+               alertController.addAction(cancelAction)
+
+               // Present the alert controller
+               present(alertController, animated: true, completion: nil)
+           }
+    }
+    @objc func deleteGuestButtonTapped(_ sender: UIButton) {
+           print("delete Guest Button Tapped")
+           let buttonPosition = sender.convert(CGPoint.zero, to: self.guestDetailsTable)
+                if let indexPath = self.guestDetailsTable.indexPathForRow(at: buttonPosition) {
+                    // Remove the guest from the array
+                    guestDetails.remove(at: indexPath.row)
+                    // Reload the table view to reflect the changes
+                    guestDetailsTable.reloadData()
+                }
+
+    }
+    
+    @IBAction func addGuestButtonTapped(_ sender: Any) {
+        // Create a UIAlertController for adding
+              let alertController = UIAlertController(title: "Add Guest", message: nil, preferredStyle: .alert)
+
+              // Add text fields for guest details
+              alertController.addTextField { textField in
+                  textField.placeholder = "Enter Guest Name"
+              }
+              alertController.addTextField { textField in
+                  textField.placeholder = "Enter Gender"
+              }
+              alertController.addTextField { textField in
+                  textField.placeholder = "Enter Age"
+                  textField.keyboardType = .numberPad
+              }
+
+              // Create actions for OK and Cancel buttons
+              let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                  // Retrieve guest details from text fields
+                  if let name = alertController.textFields?[0].text,
+                      let gender = alertController.textFields?[1].text,
+                      let ageString = alertController.textFields?[2].text,
+                      let age = Int(ageString) {
+                      // Create a new GuestDetail object
+                      let newGuest = GuestDetail(name: name, gender: gender, age: age)
+
+                      // Add the new guest to the array
+                      self.guestDetails.append(newGuest)
+
+                      // Reload the table view to reflect the changes
+                      self.guestDetailsTable.reloadData()
+                  }
+              }
+
+              let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+              // Add actions to the alert controller
+              alertController.addAction(okAction)
+              alertController.addAction(cancelAction)
+
+              // Present the alert controller
+              present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        /*
+        let storyboard = UIStoryboard(name: "ticketConfirmedView", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ticketConfirmedViewController") as!
+        TicketConfirmedViewController
+        viewController.selectedCruise = selectedCruise
+        self.navigationController?.pushViewController(viewController, animated: true)
+         */
+    }
+}
+
+extension UIColor {
+    convenience init(hex: String, alpha: CGFloat = 1.0) {
+        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+
+        Scanner(string: hexSanitized).scanHexInt64(&rgb)
+
+        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(rgb & 0x0000FF) / 255.0
+
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}

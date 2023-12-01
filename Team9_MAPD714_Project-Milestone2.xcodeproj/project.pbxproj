@@ -21,10 +21,6 @@
 		DE13F2FB2B184FFA004CF969 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13F2FA2B184FFA004CF969 /* User.swift */; };
 		DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */; };
 		DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C67272B02CCF3006317BA /* PaymentViewController.swift */; };
-		DE3C672A2B02CD43006317BA /* RoomDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67292B02CD43006317BA /* RoomDetails.storyboard */; };
-		DE3C672C2B02CD52006317BA /* RoomDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C672B2B02CD52006317BA /* RoomDetailsViewController.swift */; };
-		DE3C672E2B02CD6F006317BA /* PassengerDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */; };
-		DE3C67302B02CD92006317BA /* PassengerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */; };
 		DE3C67332B02EB38006317BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3C67312B02EB38006317BA /* Main.storyboard */; };
 		DE4478C42B171FE400B50199 /* ProfilePageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4478C32B171FE400B50199 /* ProfilePageView.storyboard */; };
 		DE4478C62B17201200B50199 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4478C52B17201200B50199 /* ProfilePageViewController.swift */; };
@@ -34,6 +30,10 @@
 		DE4478D02B17240A00B50199 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4478CF2B17240A00B50199 /* LoginViewController.swift */; };
 		DE4FA24A2B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4FA2492B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift */; };
 		DE4FA24C2B157CBA00F6AE7E /* CruiseDetailsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4FA24B2B157CBA00F6AE7E /* CruiseDetailsView.storyboard */; };
+		DE9B5A682B1A78DD00B5B373 /* GuestDetailsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9B5A672B1A78DD00B5B373 /* GuestDetailsView.storyboard */; };
+		DE9B5A6A2B1A79AD00B5B373 /* GuestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B5A692B1A79AD00B5B373 /* GuestDetailsViewController.swift */; };
+		DE9B5A6C2B1A7ACB00B5B373 /* BookingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B5A6B2B1A7ACB00B5B373 /* BookingDetails.swift */; };
+		DE9B5A6E2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B5A6D2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift */; };
 		DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */; };
 		DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */; };
 		DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */; };
@@ -81,10 +81,6 @@
 		DE13F2FA2B184FFA004CF969 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE3C67252B02CBDF006317BA /* PaymentScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentScreen.storyboard; sourceTree = "<group>"; };
 		DE3C67272B02CCF3006317BA /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
-		DE3C67292B02CD43006317BA /* RoomDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoomDetails.storyboard; sourceTree = "<group>"; };
-		DE3C672B2B02CD52006317BA /* RoomDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewController.swift; sourceTree = "<group>"; };
-		DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PassengerDetails.storyboard; sourceTree = "<group>"; };
-		DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerDetailsViewController.swift; sourceTree = "<group>"; };
 		DE3C67322B02EB38006317BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE4478C32B171FE400B50199 /* ProfilePageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfilePageView.storyboard; sourceTree = "<group>"; };
 		DE4478C52B17201200B50199 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +90,10 @@
 		DE4478CF2B17240A00B50199 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DE4FA2492B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseDetailsItineraryCell.swift; sourceTree = "<group>"; };
 		DE4FA24B2B157CBA00F6AE7E /* CruiseDetailsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CruiseDetailsView.storyboard; sourceTree = "<group>"; };
+		DE9B5A672B1A78DD00B5B373 /* GuestDetailsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuestDetailsView.storyboard; sourceTree = "<group>"; };
+		DE9B5A692B1A79AD00B5B373 /* GuestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailsViewController.swift; sourceTree = "<group>"; };
+		DE9B5A6B2B1A7ACB00B5B373 /* BookingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetails.swift; sourceTree = "<group>"; };
+		DE9B5A6D2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDetailsViewCell.swift; sourceTree = "<group>"; };
 		DEACA93B2AF02F0700EC7CEE /* Team9_MAPD714_Project-Milestone2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team9_MAPD714_Project-Milestone2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEACA93E2AF02F0700EC7CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEACA9402AF02F0700EC7CEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4478CD2B1723DC00B50199 /* LoginView.storyboard */,
+				DE9B5A672B1A78DD00B5B373 /* GuestDetailsView.storyboard */,
 				DE3C67312B02EB38006317BA /* Main.storyboard */,
 				DE13F2E52B181B4E004CF969 /* CruiseListingView.storyboard */,
 				DE4478C32B171FE400B50199 /* ProfilePageView.storyboard */,
@@ -171,6 +172,7 @@
 				DEACA9422AF02F0700EC7CEE /* HomeViewController.swift */,
 				DE13F2E72B181B9E004CF969 /* CruiseListingViewController.swift */,
 				DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */,
+				DE9B5A692B1A79AD00B5B373 /* GuestDetailsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -184,6 +186,8 @@
 				DE13F2ED2B181DFC004CF969 /* Cruise.swift */,
 				DE13F2F82B182F5E004CF969 /* DatePickerView.swift */,
 				DE13F2FA2B184FFA004CF969 /* User.swift */,
+				DE9B5A6B2B1A7ACB00B5B373 /* BookingDetails.swift */,
+				DE9B5A6D2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -234,10 +238,6 @@
 				DEE4CB802B03471400C4FBDC /* TicketViewController.swift */,
 				DEE378E82B03BE1E004CE546 /* ItineraryCell.swift */,
 				DE3C67272B02CCF3006317BA /* PaymentViewController.swift */,
-				DE3C67292B02CD43006317BA /* RoomDetails.storyboard */,
-				DE3C672D2B02CD6F006317BA /* PassengerDetails.storyboard */,
-				DE3C672F2B02CD92006317BA /* PassengerDetailsViewController.swift */,
-				DE3C672B2B02CD52006317BA /* RoomDetailsViewController.swift */,
 				DEACA9472AF02F0A00EC7CEE /* Assets.xcassets */,
 				DEACA9492AF02F0A00EC7CEE /* LaunchScreen.storyboard */,
 				DEACA94C2AF02F0A00EC7CEE /* Info.plist */,
@@ -368,13 +368,12 @@
 			files = (
 				DEACA94B2AF02F0A00EC7CEE /* LaunchScreen.storyboard in Resources */,
 				DE3C67262B02CBDF006317BA /* PaymentScreen.storyboard in Resources */,
-				DE3C672E2B02CD6F006317BA /* PassengerDetails.storyboard in Resources */,
+				DE9B5A682B1A78DD00B5B373 /* GuestDetailsView.storyboard in Resources */,
 				DE3C67332B02EB38006317BA /* Main.storyboard in Resources */,
 				DEE4CB7F2B03470600C4FBDC /* Ticket.storyboard in Resources */,
 				DE4FA24C2B157CBA00F6AE7E /* CruiseDetailsView.storyboard in Resources */,
 				DE13F2E62B181B4E004CF969 /* CruiseListingView.storyboard in Resources */,
 				DE4478CA2B17207D00B50199 /* SignUpView.storyboard in Resources */,
-				DE3C672A2B02CD43006317BA /* RoomDetails.storyboard in Resources */,
 				DE4478C42B171FE400B50199 /* ProfilePageView.storyboard in Resources */,
 				DEACA9482AF02F0A00EC7CEE /* Assets.xcassets in Resources */,
 				DE4478CE2B1723DC00B50199 /* LoginView.storyboard in Resources */,
@@ -403,19 +402,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE4478D02B17240A00B50199 /* LoginViewController.swift in Sources */,
-				DE3C67302B02CD92006317BA /* PassengerDetailsViewController.swift in Sources */,
 				DE13F2EB2B181DA3004CF969 /* CruiseTableViewCell.swift in Sources */,
 				DE0D798D2B12D493007F31F8 /* DatabaseManager.swift in Sources */,
+				DE9B5A6C2B1A7ACB00B5B373 /* BookingDetails.swift in Sources */,
 				DE13F2EE2B181DFC004CF969 /* Cruise.swift in Sources */,
 				DE4478C62B17201200B50199 /* ProfilePageViewController.swift in Sources */,
+				DE9B5A6E2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift in Sources */,
 				DE4478CC2B1720BE00B50199 /* SignUpViewController.swift in Sources */,
 				DE13F2F72B1825A5004CF969 /* DatabaseOperations.swift in Sources */,
+				DE9B5A6A2B1A79AD00B5B373 /* GuestDetailsViewController.swift in Sources */,
 				DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */,
 				DE13F2E82B181B9E004CF969 /* CruiseListingViewController.swift in Sources */,
 				DE4FA24A2B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift in Sources */,
 				DEE378EB2B03BE71004CE546 /* Itinerary.swift in Sources */,
 				DEACA9432AF02F0700EC7CEE /* HomeViewController.swift in Sources */,
-				DE3C672C2B02CD52006317BA /* RoomDetailsViewController.swift in Sources */,
 				DE13F2F92B182F5E004CF969 /* DatePickerView.swift in Sources */,
 				DEE4CB812B03471400C4FBDC /* TicketViewController.swift in Sources */,
 				DE13F2F52B1824FB004CF969 /* DatabaseTablesPrepopulation.swift in Sources */,

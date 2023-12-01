@@ -56,7 +56,8 @@ extension DatabaseManager {
                 cruise_id INTEGER REFERENCES Cruises(cruise_id),
                 port_name TEXT,
                 time TEXT,
-                date DATE
+                date DATE,
+                port_image TEXT
             );
         """
 

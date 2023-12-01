@@ -152,33 +152,38 @@ extension DatabaseManager {
         ]
         
         for cruise in cruiseData {
-            if let cruiseID = getCruiseID(forCruiseName: cruise.0) {
-                for portInfo in cruise.1 {
-                    let portName = portInfo.0
-                    let time = portInfo.1
-                    let date = portInfo.2
-                    insertItineraryForCruise(cruiseID: cruiseID, portName: portName, time: time, date: date)
+                if let cruiseID = getCruiseID(forCruiseName: cruise.0) {
+                    for portInfo in cruise.1 {
+                        let portName = portInfo.0
+                        let time = portInfo.1
+                        let date = portInfo.2
+                        
+                        let randomNumber = Int.random(in: 1...9) // Generating a random number from 1 to 9
+                        let portImage = "portImage\(randomNumber)"// Include port image information
+                        
+                        insertItineraryForCruise(cruiseID: cruiseID, portName: portName, time: time, date: date, portImage: portImage)
+                    }
                 }
             }
-        }
     }
 
 
-    func insertItineraryForCruise(cruiseID: Int, portName: String, time: String, date: String) {
-        let insertStatementString = "INSERT INTO Cruise_Itinerary (cruise_id, port_name, time, date) VALUES (?, ?, ?, ?);"
-
+    func insertItineraryForCruise(cruiseID: Int, portName: String, time: String, date: String, portImage: String) {
+        let insertStatementString = "INSERT INTO Cruise_Itinerary (cruise_id, port_name, time, date, port_image) VALUES (?, ?, ?, ?, ?);"
+        
         var insertStatement: OpaquePointer?
-
+        
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(insertStatement, 1, Int32(cruiseID))
             sqlite3_bind_text(insertStatement, 2, (portName as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 3, (time as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 4, (date as NSString).utf8String, -1, nil)
-
+            sqlite3_bind_text(insertStatement, 5, (portImage as NSString).utf8String, -1, nil)
+            
             if sqlite3_step(insertStatement) != SQLITE_DONE {
                 print("Error inserting cruise itinerary data")
             }
-
+            
             sqlite3_finalize(insertStatement)
         } else {
             print("Error preparing insert statement for cruise itinerary")

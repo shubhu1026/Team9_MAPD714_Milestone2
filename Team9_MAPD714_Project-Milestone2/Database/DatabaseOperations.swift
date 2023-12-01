@@ -111,6 +111,11 @@ extension DatabaseManager{
                 let imageName = String(cString: sqlite3_column_text(queryStatement, 8))
 
                 let cruise = Cruise(name: name, imageName: imageName, nights: nights, operatorName: operatorName, tripFrom: tripFrom, tripTo: tripTo, portsCount: portsCount, departureDate: date, avgPersonCost: Double(cost))
+                
+                // Fetch and assign ports information for this cruise
+                let portsForCruise = fetchPortsForCruise(name: name)
+                cruise.visitingPorts = portsForCruise
+                
                 cruises.append(cruise)
             }
         } else {
@@ -122,8 +127,33 @@ extension DatabaseManager{
         return cruises
     }
 
+    func fetchPortsForCruise(name: String) -> [PortInfo] {
+        var ports: [PortInfo] = []
+        var queryStatement: OpaquePointer?
 
-    
+        let query = "SELECT port_name, time, date, port_image FROM Cruise_Itinerary WHERE cruise_id = (SELECT cruise_id FROM Cruises WHERE cruise_name = ?)"
+
+        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+            sqlite3_bind_text(queryStatement, 1, (name as NSString).utf8String, -1, nil)
+
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let portName = String(cString: sqlite3_column_text(queryStatement, 0))
+                let time = String(cString: sqlite3_column_text(queryStatement, 1))
+                let date = String(cString: sqlite3_column_text(queryStatement, 2))
+                let portImage = String(cString: sqlite3_column_text(queryStatement, 3))
+
+                let portInfo = PortInfo(name: portName, time: time, date: date, portImage: portImage)
+                ports.append(portInfo)
+            }
+        } else {
+            print("SELECT statement for ports could not be prepared")
+        }
+
+        sqlite3_finalize(queryStatement)
+
+        return ports
+    }
+
     func getCruiseID(forCruiseName name: String) -> Int? {
         var cruiseID: Int?
 
