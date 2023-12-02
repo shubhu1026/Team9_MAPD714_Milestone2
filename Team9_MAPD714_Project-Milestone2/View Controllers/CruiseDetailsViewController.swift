@@ -60,6 +60,7 @@ class CruiseDetailsViewController: UIViewController, UITableViewDataSource, UITa
         // Add a separator inset to the cell
         let portInfo = itinerary[indexPath.row]
         cell.setupCruiseDetailsItineraryCell(portInfo: portInfo)
+    
         return cell
     }
         
@@ -105,12 +106,24 @@ class CruiseDetailsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func bookButtonClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "GuestDetailsView", bundle: nil)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "GuestDetailsViewController") as! GuestDetailsViewController
-        viewController.selectedCruise = cruise
-        viewController.loadViewIfNeeded()
-        setupBackButton()
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+           
+           if isLoggedIn {
+               // User is logged in, proceed to the GuestDetailsViewController
+               
+               let storyboard = UIStoryboard(name: "GuestDetailsView", bundle: nil)
+               let viewController = storyboard.instantiateViewController(withIdentifier: "GuestDetailsViewController") as! GuestDetailsViewController
+               viewController.selectedCruise = cruise
+               viewController.loadViewIfNeeded()
+               setupBackButton()
+               self.navigationController?.pushViewController(viewController, animated: true)
+           } else {
+               // User is not logged in, navigate to the LoginViewController
+               
+               let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+               let viewController = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+               viewController.modalPresentationStyle = .fullScreen
+               self.navigationController?.pushViewController(viewController, animated: true)
+           }
     }
 }

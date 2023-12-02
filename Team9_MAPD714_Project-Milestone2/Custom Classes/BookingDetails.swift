@@ -13,9 +13,6 @@ struct BookingDetails {
     let totalRooms: Int
     let cruiseSelected : Cruise
     let GuestDetails : [GuestDetail]
-    let tripFrom: String
-    let tripTo: String
-    let visitingPorts : [PortInfo]
     let totalTripFare: Double
     let ticketId : String
 }

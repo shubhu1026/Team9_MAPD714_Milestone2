@@ -80,7 +80,19 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
         cell.configure(with: cruise)
         setupCard(cell.cardView)
         
+        let heartImage = cruise.isFavourite ? UIImage(named: "icon_heart_fill") : UIImage(named: "icon_heart")
+        cell.heartSelected.setImage(heartImage, for: .normal)
+        
+        cell.heartSelected.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
+        cell.heartSelected.tag = indexPath.row
+        
         return cell
+    }
+    
+    @objc func favoriteButtonTapped(_ sender: UIButton) {
+        print("Favourite Tapped")
+        filteredCruises[sender.tag].isFavourite.toggle()
+        cruiseListTableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .none)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

@@ -12,14 +12,13 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     @IBOutlet weak var cruiseName: UILabel!
     @IBOutlet weak var guestDetailsModal: UIView!
     
-    var totalRooms : String?
+    var totalRooms : String = "0"
+    
+    var booking: BookingDetails?
 
     @IBOutlet weak var totalRoomLabel: UILabel!
-    var guestDetails : [GuestDetail] = [
-        GuestDetail(name: "Anmol Sharma", gender: "Male", age: 24),
-        GuestDetail(name: "Aman Sharma", gender: "Male", age: 21),
-        GuestDetail(name: "Nitika Sharma", gender: "Female", age: 22),
-    ]
+    var guestDetails : [GuestDetail] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Apply styles to guestDetailsModal
@@ -41,29 +40,21 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
         guestDetailsTable.delegate = self
         guestDetailsTable.dataSource = self
         guestDetailsTable.reloadData()
-
-        // Do any additional setup after loading the view.
     }
+    
     @IBAction func totalRoomsSelected(_ sender: UISlider) {
         totalRooms = "\(lroundf(sender.value))"
         totalRoomLabel.text = "Total Rooms - \(lroundf(sender.value))"
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // Get the selected item
-//        let selectedCruise = cruiseShips[indexPath.row]
-//        let storyboard = UIStoryboard(name: "cruiseDetailsView", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "cruiseDetailsViewController") as! CruiseDetailsViewController
-//        viewController.selectedCruise = selectedCruise
-//        self.navigationController?.pushViewController(viewController, animated: true)
-        
-    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           // Set the desired height for the cell
            return 60.0
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return guestDetails.count
-   }
+        return guestDetails.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GuestDetailsCell", for: indexPath) as! GuestDetailsViewCell
         // Add a separator inset to the cell
@@ -181,14 +172,73 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        /*
-        let storyboard = UIStoryboard(name: "ticketConfirmedView", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ticketConfirmedViewController") as!
-        TicketConfirmedViewController
-        viewController.selectedCruise = selectedCruise
+        createBooking()
+        
+        let storyboard = UIStoryboard(name: "PaymentView", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
+        
+        viewController.booking = booking
+        
         self.navigationController?.pushViewController(viewController, animated: true)
-         */
     }
+    
+    func createBooking() {
+            guard let bookedBy = getUserName(),
+                  let selectedCruise = selectedCruise else {
+                // Handle cases where username or cruise information is unavailable
+                return
+            }
+
+            let bookingDate = Date()
+            let rooms = Int(totalRooms) ?? 1
+            let totalTripFare = Double(guestDetails.count) * selectedCruise.avgPersonCost + Double(rooms) * (selectedCruise.avgPersonCost / 2)
+
+            let ticketId = generateUniqueTicketNumber()
+
+            booking = BookingDetails(
+                bookedBy: bookedBy,
+                bookingDate: "\(bookingDate)",
+                totalRooms: rooms,
+                cruiseSelected: selectedCruise,
+                GuestDetails: guestDetails,
+                totalTripFare: totalTripFare,
+                ticketId: ticketId
+            )
+        }
+
+    
+    func getUserName() -> String? {
+        guard let email = UserDefaults.standard.string(forKey: "userEmail") else { return nil }
+        return dbManager.getUserInfo(email: email)?.userName
+    }
+    
+    func generateUniqueTicketNumber() -> String {
+        var ticketNumber = generateRandomTicketNumber()
+        
+        // Check if the generated ticket number already exists in the database
+        while dbManager.doesTicketNumberExist(ticketNumber: ticketNumber) {
+            ticketNumber = generateRandomTicketNumber() // Generate a new ticket number
+        }
+        
+        return ticketNumber
+    }
+    
+    func generateRandomTicketNumber() -> String {
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let numbers = "0123456789"
+
+        let letter1 = String(letters.randomElement()!)
+        let letter2 = String(letters.randomElement()!)
+        let number1 = String(numbers.randomElement()!)
+        let number2 = String(numbers.randomElement()!)
+        let number3 = String(numbers.randomElement()!)
+        let number4 = String(numbers.randomElement()!)
+        let letter3 = String(letters.randomElement()!)
+
+        let ticketNumber = "\(letter1)\(letter2)\(number1)\(number2)\(number3)\(number4)\(letter3)"
+        return ticketNumber
+    }
+
 }
 
 extension UIColor {

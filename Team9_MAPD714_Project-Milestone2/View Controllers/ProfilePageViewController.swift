@@ -47,12 +47,12 @@ class ProfilePageViewController: UIViewController {
     
     @IBAction func saveUserProfile(_ sender: Any) {
         guard let userName = userName.text, !userName.isEmpty else {
-            showAlert(message: "Please enter your name.")
+            showAlert(title:"Error", message: "Please enter your name.")
             return
         }
 
         guard let userEmail = userEmail.text, !userEmail.isEmpty, isValidEmail(email: userEmail) else {
-            showAlert(message: "Please enter a valid email.")
+            showAlert(title:"Error", message: "Please enter a valid email.")
             return
         }
 
@@ -64,12 +64,27 @@ class ProfilePageViewController: UIViewController {
                                userCountry: userCountry.text ?? "",
                                userPhoneNumber: userPhoneNumber.text ?? "")
                 
-        if dbManager.saveUserInfo(user: updatedUser) {
-            // Optionally, navigate to another screen or perform additional actions upon successful save
+        if dbManager.updateUserInfo(user: updatedUser) {
+            
+            showAlert(title: "Success", message: "Logged in successfully") { [weak self] in
+                guard let self = self else { return }
+                
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                UserDefaults.standard.set(user?.userEmail, forKey: "userEmail")
+                navigateToCruiseList()
+            }
+            
             print("Profile saved successfully!")
         } else {
-            showAlert(message: "Failed to save profile.")
+            showAlert(title:"Error", message: "Failed to save profile.")
         }
+    }
+    
+    func navigateToCruiseList() {
+        let storyboard = UIStoryboard(name: "CruiseListingView", bundle: nil)
+        let cruiseListViewController = storyboard.instantiateViewController(withIdentifier: "cruiseListViewController") as! CruiseListingViewController
+        cruiseListViewController.loadViewIfNeeded()
+        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
     }
     
     private func populateFields() {
@@ -83,9 +98,11 @@ class ProfilePageViewController: UIViewController {
         userPhoneNumber.text = user.userPhoneNumber
     }
 
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }

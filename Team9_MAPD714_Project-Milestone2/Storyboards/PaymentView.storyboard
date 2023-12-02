@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Payment View Controller-->
+        <scene sceneID="4ju-tI-BMr">
+            <objects>
+                <viewController storyboardIdentifier="paymentViewController" id="RcS-N5-Uc4" customClass="PaymentViewController" customModule="Team9_MAPD714_Project_Milestone2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yUv-0H-Bis">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuz-Ut-NfB">
+                                <rect key="frame" x="22" y="125" width="386" height="653"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secure Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58L-XX-KH0">
+                                        <rect key="frame" x="36" y="20" width="149.66666666666666" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="raK-dD-kVR">
+                                        <rect key="frame" x="8" y="22" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="9Zm-c6-xcB"/>
+                                            <constraint firstAttribute="width" constant="20" id="weF-09-1AD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1400" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MC4-S0-72V">
+                                        <rect key="frame" x="258" y="18" width="120" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="wUa-RL-8UH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0rg-ds-jpu">
+                                        <rect key="frame" x="8" y="236" width="370" height="32"/>
+                                        <segments>
+                                            <segment title="Credit Card"/>
+                                            <segment title="Debit Card"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fCP-5D-YRY">
+                                        <rect key="frame" x="22" y="68" width="342" height="148"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqH-hC-7zd">
+                                                <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="74" id="7bm-E3-wpg"/>
+                                                    <constraint firstAttribute="width" constant="342" id="lNa-uQ-cI4"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="Apple Pay" imagePadding="10"/>
+                                                <connections>
+                                                    <action selector="applePayClicked:" destination="RcS-N5-Uc4" eventType="touchUpInside" id="BDE-I3-yep"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-pg-aFh">
+                                                <rect key="frame" x="0.0" y="74" width="342" height="74"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="74" id="ZSI-RB-hsu"/>
+                                                    <constraint firstAttribute="width" constant="342" id="uS4-tB-zmu"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="CD" imagePadding="10"/>
+                                                <connections>
+                                                    <action selector="creditDebutClicked:" destination="RcS-N5-Uc4" eventType="touchUpInside" id="kf0-IC-30N"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80025820700000005" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Card Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4k-Yh-Guo">
+                                        <rect key="frame" x="8" y="317" width="370" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-HL-ZhN">
+                                        <rect key="frame" x="8" y="577.33333333333337" width="370" height="35.666666666666629"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Pay Now">
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="payButtonClicked:" destination="RcS-N5-Uc4" eventType="touchUpInside" id="LLk-dd-hKK"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XXXX-XXXX-XXXX-XXXX" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QPh-3w-qzX">
+                                        <rect key="frame" x="8" y="361" width="370" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cardholder Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66x-Vk-arW">
+                                        <rect key="frame" x="8" y="411" width="370" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valid Until:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqk-fu-347">
+                                        <rect key="frame" x="8" y="469" width="77" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVC" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeD-Vp-Wra">
+                                        <rect key="frame" x="245.33333333333331" y="461" width="57" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD/MM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bC4-On-RmS">
+                                        <rect key="frame" x="93" y="461" width="76" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="bul-OZ-4Zn"/>
+                                            <constraint firstAttribute="width" constant="76" id="z9r-BE-dEo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CVC:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etj-ei-L9n">
+                                        <rect key="frame" x="201" y="469" width="36.333333333333343" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="opO-Tg-p0U"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80025820700000005" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="58L-XX-KH0" firstAttribute="top" secondItem="opO-Tg-p0U" secondAttribute="top" constant="20" id="1Iv-Gw-sNg"/>
+                                    <constraint firstItem="MC4-S0-72V" firstAttribute="top" secondItem="opO-Tg-p0U" secondAttribute="top" constant="18" id="3d3-Wc-6Iu"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="trailing" secondItem="MC4-S0-72V" secondAttribute="trailing" constant="8" id="58Y-Ox-eZa"/>
+                                    <constraint firstItem="4yz-HL-ZhN" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="5dx-J2-Ga7"/>
+                                    <constraint firstItem="QPh-3w-qzX" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="8Zz-L0-eY2"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="bottom" secondItem="4yz-HL-ZhN" secondAttribute="bottom" constant="40" id="9Si-Cl-Ss5"/>
+                                    <constraint firstItem="66x-Vk-arW" firstAttribute="top" secondItem="QPh-3w-qzX" secondAttribute="bottom" constant="16" id="BSK-yU-QXD"/>
+                                    <constraint firstItem="QPh-3w-qzX" firstAttribute="top" secondItem="P4k-Yh-Guo" secondAttribute="bottom" constant="20" id="Bg1-0O-x50"/>
+                                    <constraint firstItem="etj-ei-L9n" firstAttribute="top" secondItem="66x-Vk-arW" secondAttribute="bottom" constant="24" id="Cac-zY-05Q"/>
+                                    <constraint firstItem="DeD-Vp-Wra" firstAttribute="leading" secondItem="etj-ei-L9n" secondAttribute="trailing" constant="8" id="FHE-Zc-BVt"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="trailing" secondItem="66x-Vk-arW" secondAttribute="trailing" constant="8" id="MIJ-O6-aUO"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="trailing" secondItem="0rg-ds-jpu" secondAttribute="trailing" constant="8" id="Pqg-ja-N3w"/>
+                                    <constraint firstItem="P4k-Yh-Guo" firstAttribute="top" secondItem="0rg-ds-jpu" secondAttribute="bottom" constant="50" id="SpC-ZG-Dyh"/>
+                                    <constraint firstAttribute="trailing" secondItem="fCP-5D-YRY" secondAttribute="trailing" constant="22" id="WTX-EO-87n"/>
+                                    <constraint firstItem="nqk-fu-347" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="XQF-LE-qPd"/>
+                                    <constraint firstItem="nqk-fu-347" firstAttribute="top" secondItem="66x-Vk-arW" secondAttribute="bottom" constant="24" id="ZU1-Qe-o22"/>
+                                    <constraint firstItem="raK-dD-kVR" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="bzB-BS-rTo"/>
+                                    <constraint firstItem="0rg-ds-jpu" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="cxv-Cd-HeT"/>
+                                    <constraint firstItem="fCP-5D-YRY" firstAttribute="leading" secondItem="cuz-Ut-NfB" secondAttribute="leading" constant="22" id="dDa-eN-x3x"/>
+                                    <constraint firstItem="raK-dD-kVR" firstAttribute="top" secondItem="opO-Tg-p0U" secondAttribute="top" constant="22" id="dGW-Tp-Ii8"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="trailing" secondItem="QPh-3w-qzX" secondAttribute="trailing" constant="8" id="edC-fw-GNa"/>
+                                    <constraint firstItem="66x-Vk-arW" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="g8K-ue-kPI"/>
+                                    <constraint firstItem="58L-XX-KH0" firstAttribute="leading" secondItem="raK-dD-kVR" secondAttribute="trailing" constant="8" id="gCP-o2-amY"/>
+                                    <constraint firstItem="P4k-Yh-Guo" firstAttribute="leading" secondItem="opO-Tg-p0U" secondAttribute="leading" constant="8" id="gPe-eP-dgS"/>
+                                    <constraint firstItem="bC4-On-RmS" firstAttribute="leading" secondItem="nqk-fu-347" secondAttribute="trailing" constant="8" id="kYl-ac-Qqo"/>
+                                    <constraint firstItem="bC4-On-RmS" firstAttribute="top" secondItem="66x-Vk-arW" secondAttribute="bottom" constant="16" id="lXw-fs-T0b"/>
+                                    <constraint firstItem="DeD-Vp-Wra" firstAttribute="top" secondItem="66x-Vk-arW" secondAttribute="bottom" constant="16" id="maP-0d-f0P"/>
+                                    <constraint firstItem="0rg-ds-jpu" firstAttribute="top" secondItem="fCP-5D-YRY" secondAttribute="bottom" constant="20" id="oRe-2E-ftr"/>
+                                    <constraint firstItem="opO-Tg-p0U" firstAttribute="trailing" secondItem="4yz-HL-ZhN" secondAttribute="trailing" constant="8" id="rAs-Rb-liq"/>
+                                    <constraint firstItem="etj-ei-L9n" firstAttribute="leading" secondItem="bC4-On-RmS" secondAttribute="trailing" constant="32" id="swR-kJ-dwT"/>
+                                    <constraint firstItem="fCP-5D-YRY" firstAttribute="top" secondItem="MC4-S0-72V" secondAttribute="bottom" constant="20" id="tge-vK-4zg"/>
+                                    <constraint firstAttribute="trailing" secondItem="P4k-Yh-Guo" secondAttribute="trailing" constant="8" id="vza-YI-0QS"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMb-oT-8Wy">
+                                <rect key="frame" x="22" y="69" width="386" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" systemColor="labelColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bEK-6y-f6p"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hMb-oT-8Wy" firstAttribute="leading" secondItem="bEK-6y-f6p" secondAttribute="leading" constant="22" id="4tn-E4-JNb"/>
+                            <constraint firstItem="bEK-6y-f6p" firstAttribute="bottom" secondItem="cuz-Ut-NfB" secondAttribute="bottom" constant="40" id="C8w-7z-Xpz"/>
+                            <constraint firstItem="bEK-6y-f6p" firstAttribute="trailing" secondItem="hMb-oT-8Wy" secondAttribute="trailing" constant="22" id="DzP-jJ-MDY"/>
+                            <constraint firstItem="hMb-oT-8Wy" firstAttribute="top" secondItem="bEK-6y-f6p" secondAttribute="top" constant="10" id="Ma9-Xn-ciD"/>
+                            <constraint firstItem="bEK-6y-f6p" firstAttribute="trailing" secondItem="cuz-Ut-NfB" secondAttribute="trailing" constant="22" id="SZn-KZ-Klx"/>
+                            <constraint firstItem="cuz-Ut-NfB" firstAttribute="leading" secondItem="bEK-6y-f6p" secondAttribute="leading" constant="22" id="UVh-Fs-EiA"/>
+                            <constraint firstItem="cuz-Ut-NfB" firstAttribute="top" secondItem="hMb-oT-8Wy" secondAttribute="bottom" constant="20" id="hcE-oK-vrj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CardholderTextField" destination="66x-Vk-arW" id="TIq-Xj-AEh"/>
+                        <outlet property="applePayButton" destination="xqH-hC-7zd" id="gVE-Hb-wKq"/>
+                        <outlet property="cardNoTextField" destination="QPh-3w-qzX" id="BqY-F6-0VD"/>
+                        <outlet property="cardView" destination="cuz-Ut-NfB" id="XbR-63-eLo"/>
+                        <outlet property="creditDebitButton" destination="eaI-pg-aFh" id="SLC-3e-Xd9"/>
+                        <outlet property="cvcTextField" destination="DeD-Vp-Wra" id="eK7-QS-3d6"/>
+                        <outlet property="payButton" destination="4yz-HL-ZhN" id="iAK-bR-40r"/>
+                        <outlet property="totalFareLabel" destination="MC4-S0-72V" id="60F-Qs-hYN"/>
+                        <outlet property="validityTextField" destination="bC4-On-RmS" id="Eon-vy-Mmz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5P-ix-HeL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16.744186046511629" y="-2.5751072961373391"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Apple Pay" width="362" height="60"/>
+        <image name="CD" width="362" height="60"/>
+        <image name="lock" width="6.6666665077209473" height="6.6666665077209473"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

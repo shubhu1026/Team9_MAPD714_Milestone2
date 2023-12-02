@@ -44,6 +44,7 @@ extension DatabaseManager {
             CREATE TABLE IF NOT EXISTS Users_Family_Members (
                 member_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER REFERENCES Users(user_id),
+                booking_id INTEGER REFERENCES Bookings(booking_id),
                 name TEXT NOT NULL,
                 age INTEGER,
                 gender TEXT
@@ -60,12 +61,33 @@ extension DatabaseManager {
                 port_image TEXT
             );
         """
+        
+        let createBookingsTable = """
+            CREATE TABLE IF NOT EXISTS Bookings (
+                bookingId INTEGER PRIMARY KEY AUTOINCREMENT,
+                userId INTEGER REFERENCES Users(userId),
+                cruiseId INTEGER REFERENCES Cruises(cruiseId),
+                roomsCount INTEGER,
+                guestsCount INTEGER,
+                totalFare REAL,
+                bookingDate DATE
+            );
+        """
+
 
         if sqlite3_prepare_v2(db, createUsersTable, -1, &createTableStatement, nil) == SQLITE_OK {
             if sqlite3_step(createTableStatement) == SQLITE_DONE {
                 print("Users table created successfully")
             } else {
                 print("Users table could not be created")
+            }
+        }
+        
+        if sqlite3_prepare_v2(db, createBookingsTable, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
+                print("Bookings table created successfully")
+            } else {
+                print("Bookings table could not be created")
             }
         }
 

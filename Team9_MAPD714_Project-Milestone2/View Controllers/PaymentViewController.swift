@@ -20,12 +20,25 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var applePayButton: UIButton!
     @IBOutlet weak var creditDebitButton: UIButton!
     
+    @IBOutlet weak var totalFareLabel: UILabel!
+    
+    var booking: BookingDetails?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupBackground()
         setupButtons()
         setupCardView()
+        setTotalFare()
+    }
+    
+    func setTotalFare(){
+        if let totalTripFare = booking?.totalTripFare {
+                totalFareLabel.text = "$\(totalTripFare)"
+            } else {
+                totalFareLabel.text = "N/A"
+            }
     }
     
     func setupBackground() {
@@ -95,10 +108,12 @@ class PaymentViewController: UIViewController {
     @IBAction func payButtonClicked(_ sender: Any){
         if validateCardInfo() {
         
-        let storyboard = UIStoryboard(name: "Ticket", bundle: nil)
+        let storyboard = UIStoryboard(name: "TicketConfirmedView", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ticket") as! TicketViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ticketConfirmedViewController") as! TicketConfirmedViewController
         
+        viewController.booking = booking
+            
         setupBackButton()
         viewController.loadViewIfNeeded()
         
