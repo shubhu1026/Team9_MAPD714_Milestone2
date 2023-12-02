@@ -15,6 +15,8 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     var totalRooms : String = "0"
     
     var booking: BookingDetails?
+    
+    let dbManager = DatabaseManager()
 
     @IBOutlet weak var totalRoomLabel: UILabel!
     var guestDetails : [GuestDetail] = []
@@ -183,28 +185,32 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     func createBooking() {
-            guard let bookedBy = getUserName(),
-                  let selectedCruise = selectedCruise else {
-                // Handle cases where username or cruise information is unavailable
-                return
-            }
-
-            let bookingDate = Date()
-            let rooms = Int(totalRooms) ?? 1
-            let totalTripFare = Double(guestDetails.count) * selectedCruise.avgPersonCost + Double(rooms) * (selectedCruise.avgPersonCost / 2)
-
-            let ticketId = generateUniqueTicketNumber()
-
-            booking = BookingDetails(
-                bookedBy: bookedBy,
-                bookingDate: "\(bookingDate)",
-                totalRooms: rooms,
-                cruiseSelected: selectedCruise,
-                GuestDetails: guestDetails,
-                totalTripFare: totalTripFare,
-                ticketId: ticketId
-            )
+        guard let selectedCruise = selectedCruise else {
+            print("Selected Cruise information is missing")
+            return
         }
+        
+        guard let bookedBy = getUserName() else {
+            print("Booked by user information is missing")
+            return
+        }
+
+        let bookingDate = Date()
+        let rooms = Int(totalRooms) ?? 1
+        let totalTripFare = Double(guestDetails.count) * selectedCruise.avgPersonCost + Double(rooms) * (selectedCruise.avgPersonCost / 2)
+
+        let ticketId = generateUniqueTicketNumber()
+
+        booking = BookingDetails(
+            bookedBy: bookedBy,
+            bookingDate: "\(bookingDate)",
+            totalRooms: rooms,
+            cruiseSelected: selectedCruise,
+            GuestDetails: guestDetails,
+            totalTripFare: totalTripFare,
+            ticketId: ticketId
+        )
+    }
 
     
     func getUserName() -> String? {
