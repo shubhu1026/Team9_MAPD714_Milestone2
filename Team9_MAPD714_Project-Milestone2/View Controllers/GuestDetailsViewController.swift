@@ -1,9 +1,20 @@
 //
-//  GuestDetailsViewController.swift
-//  IOS_Design_Practice
+//  HomeViewController.swift
+//  Team9_MAPD714_Project-Milestone2
 //
-//  Created by Anmol Sharma on 2023-11-27.
+//  Created by Shubham Patel on 2023-10-30.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+// Handles passenger details addition and room count selection
+
 
 import UIKit
 class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
@@ -14,6 +25,7 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     
     var totalRooms : String = "0"
     
+    // booking for use in next screen
     var booking: BookingDetails?
     
     let dbManager = DatabaseManager()
@@ -33,10 +45,8 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
         guestDetailsModal.layer.shadowRadius = 4
         guestDetailsModal.layer.shadowOpacity = 0.25
         if let selectedCruise = selectedCruise {
-                    // Example: Update UI elements with selected cruise data
             cruiseName.text = selectedCruise.name
                     print("Selected Cruise Name: \(selectedCruise.name)")
-                    // Update your UI elements here using selectedCruise properties
         }
         
         guestDetailsTable.delegate = self
@@ -67,6 +77,8 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
         cell.deleteGuest.addTarget(self, action: #selector(deleteGuestButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
+    
+    // editing guest details
     @objc func editGuestButtonTapped(_ sender: UIButton) {
            print("edit Guest Button Tapped")
            // Get the index path of the cell

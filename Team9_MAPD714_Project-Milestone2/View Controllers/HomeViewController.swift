@@ -2,8 +2,18 @@
 //  HomeViewController.swift
 //  Team9_MAPD714_Project-Milestone2
 //
-//  Created by Anmol Sharma
+//  Created by Shubham Patel on 2023-10-30.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+// Home screen for the app
 
 import UIKit
 
@@ -13,11 +23,14 @@ class CellClass: UITableViewCell {
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var callButton: UIButton!
+    
     var dataSource = [String]()
+    
+    // outlets
     @IBOutlet weak var selectedDestination: UIButton!
-    // Sample data for the second dropdown (linked to the first dropdown)
     @IBOutlet weak var selectedPort: UIButton!
     @IBOutlet weak var selectedDate: UIButton!
+    
     var portsForSelectedDestination: [String] = []
     
     let transparentView = UIView()
@@ -28,7 +41,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupBackground()
+        // setting tables delegates and datasource
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
@@ -44,6 +57,7 @@ class HomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    // on call button tap
     @IBAction func callButtonTapped(_ sender: Any) {
         print("Button Tapped")
         let phoneNumber = "tel://1234567890"

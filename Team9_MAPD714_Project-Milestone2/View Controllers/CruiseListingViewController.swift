@@ -1,3 +1,21 @@
+//
+//  HomeViewController.swift
+//  Team9_MAPD714_Project-Milestone2
+//
+//  Created by Anmol Sharma on 2023-11-28.
+//
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+//  Displays the list of cruises and some details to the users 
+
+
 import UIKit
 
 class CruiseListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -7,8 +25,11 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
     
     var dbManager: DatabaseManager! // DatabaseManager instance
     
-    var cruises: [Cruise] = [] // Array to store fetched cruises
-    var filteredCruises: [Cruise] = [] // To handle search functionality
+    // Array to store fetched cruises
+    var cruises: [Cruise] = []
+    
+    // To handle search functionality
+    var filteredCruises: [Cruise] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +41,10 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
         
         cruiseListTableView.showsVerticalScrollIndicator = false
         
-        dbManager = DatabaseManager() // Initialize DatabaseManager
+        dbManager = DatabaseManager()
         
-        fetchCruiseData() // Fetch data from the database
+        // Fetch data from the database
+        fetchCruiseData()
     }
     
     func setupBackground() {
@@ -64,12 +86,12 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Set the desired height for the cell
+        // Setting height for the cell
         return 570.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCruises.count // Return count of filtered cruises
+        return filteredCruises.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,7 +128,7 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
 
-        // Reload the table view to reflect the changes
+        // Reload the table view
         cruiseListTableView.reloadData()
     }
     

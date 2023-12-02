@@ -1,3 +1,21 @@
+//
+//  HomeViewController.swift
+//  Team9_MAPD714_Project-Milestone2
+//
+//  Created by Shubham Patel on 2023-10-30.
+//
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+// Handles user registration logic
+
+
 import UIKit
 
 class SignUpViewController: UIViewController {
@@ -54,6 +72,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    // on succesful registration
     private func handleSuccessfulRegistration() {
         showAlert(message: "User registered successfully") {
             if let email = self.userEmail.text {
@@ -65,7 +84,7 @@ class SignUpViewController: UIViewController {
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            // Handle OK action if needed
+            // Handling OK action if needed
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -89,7 +108,7 @@ class SignUpViewController: UIViewController {
     }
 
     private func isValidEmail(email: String) -> Bool {
-        // Your email validation logic
+        // email validation logic
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)

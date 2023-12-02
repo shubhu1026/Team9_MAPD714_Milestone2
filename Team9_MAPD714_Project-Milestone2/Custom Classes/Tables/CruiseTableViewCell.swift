@@ -25,8 +25,8 @@ class CruiseTableViewCell: UITableViewCell {
         totalNights.text = "\(cruise.totalNights) Nights"
         cruiseName.text = cruise.name
         operatorName.text = cruise.operatorName
-        tripFrom.text = "From: \(cruise.tripFrom)"
-        tripTo.text = "To: \(cruise.tripTo)"
+        tripFrom.text = "\(cruise.tripFrom)"
+        tripTo.text = "\(cruise.tripTo)"
         visitingPorts.text = "\(cruise.portsCount) Ports"
         totalPrice.text = "$\(cruise.avgPersonCost)"
     }

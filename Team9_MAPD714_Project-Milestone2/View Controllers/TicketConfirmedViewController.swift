@@ -1,9 +1,20 @@
 //
-//  TicketConfirmedViewController.swift
+//  HomeViewController.swift
 //  Team9_MAPD714_Project-Milestone2
 //
-//  Created by Shubham Patel on 2023-12-01.
+//  Created by Anmol Sharma on 2023-11-29.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+//  Shows ticket and handles booking details addition to the databse
+
 
 import UIKit
 
@@ -27,6 +38,8 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // of booking is properly set
         if let booking = booking {
             ticketItineraryTable.delegate = self
             ticketItineraryTable.dataSource = self
@@ -37,7 +50,7 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
             
             dbManager.insertBooking(booking: booking)
             guard let email = UserDefaults.standard.string(forKey: "userEmail") else {
-                        return  // Handle case where username is not available
+                        return
                     }
             if let userId = dbManager.getUserId(forEmail: email) {
                 dbManager.insertFamilyMembers(forBooking: booking, bookingId: booking.ticketId, userId: userId)
@@ -61,10 +74,6 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
             totalTripFareText.text = "$\(booking?.totalTripFare ?? 0)"
         }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the selected item
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            // Set the desired height for the cell
            return 130.0
@@ -76,7 +85,6 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ticketItineraryViewCell", for: indexPath) as! TicketItineraryViewCell
-        // Add a separator inset to the cell
         let cruiseItinerary = Itinerary[indexPath.row]
         cell.ItineraryTime.text = cruiseItinerary.time
         cell.ItineraryPort.text = cruiseItinerary.name
@@ -85,6 +93,7 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
         return cell
     }
     
+    // generate random ticket id
     func generateRandomTicketNumber() -> String {
         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         let numbers = "0123456789"
@@ -100,8 +109,4 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
         let ticketNumber = "\(letter1)\(letter2)\(number1)\(number2)\(number3)\(number4)\(letter3)"
         return ticketNumber
     }
-
-    // Generate a random ticket number
-    //let randomTicketNumber = generateRandomTicketNumber()
-    //print(randomTicketNumber) // Output something like "LX23412A"
 }

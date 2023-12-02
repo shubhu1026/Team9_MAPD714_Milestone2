@@ -1,14 +1,25 @@
 //
-//  LoginViewController.swift
+//  HomeViewController.swift
 //  Team9_MAPD714_Project-Milestone2
 //
-//  Created by Shubham Patel on 2023-11-29.
+//  Created by Shubham Patel on 2023-11-27.
 //
+//
+//  Team Number: 9
+//  Milestone Number: 2
+//
+//  Team Members:
+//  Shubham Patel - 301366205
+//  Anmol Sharma - 301364872
+//  Submission date - 1 Dec 2023
+//
+//  Handles user login by accessing database
 
 import UIKit
 
 class LoginViewController: UIViewController {
 
+    // for accesing database
     let databaseManager = DatabaseManager()
 
     @IBOutlet weak var userEmail: UITextField!
@@ -20,6 +31,7 @@ class LoginViewController: UIViewController {
     }
     
     
+    // navigation to sign up screen
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SignUpView", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "signUpVewController") as! SignUpViewController
@@ -37,7 +49,7 @@ class LoginViewController: UIViewController {
             return
         }
 
-        // Perform login authentication using the database logic
+        // Perform login authentication
         if databaseManager.loginUser(email: email, password: password) {
             // Login successful
             handleSuccessfulLogin()
@@ -48,6 +60,7 @@ class LoginViewController: UIViewController {
     }
     
     func handleSuccessfulLogin() {
+        // set userdefaults on login
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
         UserDefaults.standard.set(userEmail.text, forKey: "userEmail")
         
@@ -58,6 +71,7 @@ class LoginViewController: UIViewController {
         }
     }
 
+    // navigate to cruise list
     func navigateToCruiseList() {
         let storyboard = UIStoryboard(name: "CruiseListingView", bundle: nil)
         let cruiseListViewController = storyboard.instantiateViewController(withIdentifier: "cruiseListViewController") as! CruiseListingViewController
