@@ -91,9 +91,7 @@ class HomeViewController: UIViewController {
             menuView.layer.cornerRadius = 10
             view.addSubview(menuView)
             var menuItems : [String] = []
-            if let userProfileData = UserDefaults.standard.dictionary(forKey: "currentUser"),
-               let _ = userProfileData["email"] as? String,
-               let _ = userProfileData["password"] as? String {
+            if isLoggedIn(){
                // User profile data is present
                menuItems = ["My Profile", "My Favourites", "Destination Deals", "About Us", "Log Out"]
            } else {
@@ -126,6 +124,10 @@ class HomeViewController: UIViewController {
                        initialSpringVelocity: 1.0, options : .curveEaseInOut , animations: {self.transparentView.alpha = 0.5
         },completion: nil )
         
+    }
+    
+    func isLoggedIn() -> Bool{
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
     
     @objc func menuItemTapped(_ gesture: UITapGestureRecognizer) {
@@ -166,8 +168,8 @@ class HomeViewController: UIViewController {
     
     func logout() {
         // Clear user profile data from UserDefaults
-        UserDefaults.standard.removeObject(forKey: "currentUser")
-        UserDefaults.standard.removeObject(forKey: "userProfile")
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UserDefaults.standard.removeObject(forKey: "isLoggedIn")
        
         loginFunction()
 

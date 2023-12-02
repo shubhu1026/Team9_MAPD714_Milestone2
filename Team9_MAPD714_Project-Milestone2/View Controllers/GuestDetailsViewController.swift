@@ -117,6 +117,7 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
                present(alertController, animated: true, completion: nil)
            }
     }
+    
     @objc func deleteGuestButtonTapped(_ sender: UIButton) {
            print("delete Guest Button Tapped")
            let buttonPosition = sender.convert(CGPoint.zero, to: self.guestDetailsTable)
