@@ -48,11 +48,11 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
             print("Ticket - Selected Cruise Name: \(booking.cruiseSelected.name)")
             setupLabels()
             
-            dbManager.insertBooking(booking: booking)
             guard let email = UserDefaults.standard.string(forKey: "userEmail") else {
                         return
                     }
             if let userId = dbManager.getUserId(forEmail: email) {
+                dbManager.insertBooking(booking: booking, userId: userId)
                 dbManager.insertFamilyMembers(forBooking: booking, bookingId: booking.ticketId, userId: userId)
             } else {
                 print("Failed to get user ID for email: \(email)")

@@ -283,43 +283,36 @@ extension DatabaseManager{
         return false
     }
     
-    func insertBooking(booking: BookingDetails) {
-        guard let cruiseId = getCruiseID(forCruiseName: booking.cruiseSelected.name) else {
-            print("Cruise ID not found for the given name: \(booking.cruiseSelected.name)")
-            return
-        }
-        
+    func insertBooking(booking: BookingDetails, userId: Int) {
         var insertStatement: OpaquePointer?
         
-        let insertQuery = """
-            INSERT INTO Bookings (bookedBy, bookingDate, totalRooms, cruiseId, totalTripFare, ticketId)
-            VALUES (?, ?, ?, ?, ?, ?);
-        """
-        
-        if sqlite3_prepare_v2(db, insertQuery, -1, &insertStatement, nil) == SQLITE_OK {
-            let bookedBy = NSString(string: booking.bookedBy).utf8String
-            let bookingDate = NSString(string: booking.bookingDate).utf8String
-            let totalTripFare = booking.totalTripFare
-            let ticketId = NSString(string: booking.ticketId).utf8String
-            let totalRooms = Int32(booking.totalRooms)
+        if let cruiseId = getCruiseID(forCruiseName: booking.cruiseSelected.name) {
+            let insertQuery = """
+                INSERT INTO Bookings (userId, cruiseId, roomsCount, guestsCount, totalFare, bookingDate)
+                VALUES (?, ?, ?, ?, ?, ?);
+            """
             
-            sqlite3_bind_text(insertStatement, 1, bookedBy, -1, nil)
-            sqlite3_bind_text(insertStatement, 2, bookingDate, -1, nil)
-            sqlite3_bind_int(insertStatement, 3, totalRooms)
-            sqlite3_bind_int(insertStatement, 4, Int32(cruiseId))
-            sqlite3_bind_double(insertStatement, 5, totalTripFare)
-            sqlite3_bind_text(insertStatement, 6, ticketId, -1, nil)
-            
-            if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("Booking inserted successfully")
+            if sqlite3_prepare_v2(db, insertQuery, -1, &insertStatement, nil) == SQLITE_OK {
+                sqlite3_bind_int(insertStatement, 1, Int32(userId))
+                sqlite3_bind_int(insertStatement, 2, Int32(cruiseId))
+                sqlite3_bind_int(insertStatement, 3, Int32(booking.totalRooms))
+                sqlite3_bind_int(insertStatement, 4, Int32(booking.GuestDetails.count))
+                sqlite3_bind_double(insertStatement, 5, booking.totalTripFare)
+                sqlite3_bind_text(insertStatement, 6, (booking.bookingDate as NSString).utf8String, -1, nil)
+                
+                if sqlite3_step(insertStatement) == SQLITE_DONE {
+                    print("Booking inserted successfully")
+                } else {
+                    print("Failed to insert booking")
+                }
             } else {
-                print("Failed to insert booking")
+                print("Insert statement could not be prepared")
             }
+            
+            sqlite3_finalize(insertStatement)
         } else {
-            print("Insert statement could not be prepared")
+            print("Cruise ID not found for the given name: \(booking.cruiseSelected.name)")
         }
-        
-        sqlite3_finalize(insertStatement)
     }
     
     func insertFamilyMembers(forBooking booking: BookingDetails, bookingId: String, userId: Int) {
