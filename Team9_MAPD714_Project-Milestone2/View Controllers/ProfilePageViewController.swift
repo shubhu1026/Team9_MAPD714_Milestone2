@@ -26,6 +26,10 @@ class ProfilePageViewController: UIViewController {
         
         if isLoggedIn() {
             // User is logged in, fetch details from database
+            if let email = UserDefaults.standard.string(forKey: "userEmail") {
+                userEmail.text = email
+                fetchUserDetailsFromDatabase()
+            }
             fetchUserDetailsFromDatabase()
             userEmail.isEnabled = false
         } else if let userEmailText = userEmailText,!userEmailText.isEmpty {
@@ -40,7 +44,7 @@ class ProfilePageViewController: UIViewController {
     }
     
     func fetchUserDetailsFromDatabase() {
-        guard let email = userEmailText else { return }
+        guard let email = UserDefaults.standard.string(forKey: "userEmail") else { return }
         user = dbManager.getUserInfo(email: email)
         populateFields()
     }
