@@ -81,11 +81,13 @@ class ProfilePageViewController: UIViewController {
                 
         if dbManager.updateUserInfo(user: updatedUser) {
             
-            showAlert(title: "Success", message: "Logged in successfully") { [weak self] in
+            showAlert(title: "Success", message: "Data saved successfully") { [weak self] in
                 guard let self = self else { return }
                 
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                UserDefaults.standard.set(user?.userEmail, forKey: "userEmail")
+                UserDefaults.standard.set(userEmail, forKey: "userEmail")
+                
+                
                 navigateToCruiseList()
             }
             
@@ -96,10 +98,10 @@ class ProfilePageViewController: UIViewController {
     }
     
     func navigateToCruiseList() {
-        let storyboard = UIStoryboard(name: "CruiseListingView", bundle: nil)
-        let cruiseListViewController = storyboard.instantiateViewController(withIdentifier: "cruiseListViewController") as! CruiseListingViewController
-        cruiseListViewController.loadViewIfNeeded()
-        self.navigationController?.pushViewController(cruiseListViewController, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! HomeViewController
+        viewController.loadViewIfNeeded()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func populateFields() {
