@@ -69,8 +69,23 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
             if let totalRooms = booking?.totalRooms {
                 totalRoomsCountText.text = "\(totalRooms)"
             }
+        
+            let (seniors, adults, children) = calculatePassengerCounts()
             
-            guestsCountText.text = "\(booking?.GuestDetails.count ?? 0)"
+            var guestText = ""
+            if seniors > 0 {
+                guestText += "\(seniors) Seniors "
+            }
+            if adults > 0 {
+                guestText += "\(adults) Adults "
+            }
+            if children > 0 {
+                guestText += "\(children) Children "
+            }
+        
+            guestsCountText.text = guestText.isEmpty ? "No guests" : guestText.trimmingCharacters(in: .whitespaces)
+            
+            //guestsCountText.text = "\(booking?.GuestDetails.count ?? 0)"
             totalTripFareText.text = "$\(booking?.totalTripFare ?? 0)"
         }
     
@@ -109,4 +124,19 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
         let ticketNumber = "\(letter1)\(letter2)\(number1)\(number2)\(number3)\(number4)\(letter3)"
         return ticketNumber
     }
+    
+    private func calculatePassengerCounts() -> (seniors: Int, adults: Int, children: Int) {
+            guard let booking = booking else {
+                return (0, 0, 0)
+            }
+
+            let seniorAgeThreshold = 60
+            let adultAgeThreshold = 18
+
+            let seniorCount = booking.GuestDetails.filter { $0.age > seniorAgeThreshold }.count
+            let adultCount = booking.GuestDetails.filter { $0.age >= adultAgeThreshold && $0.age <= seniorAgeThreshold }.count
+            let childCount = booking.GuestDetails.filter { $0.age < adultAgeThreshold }.count
+
+            return (seniorCount, adultCount, childCount)
+        }
 }

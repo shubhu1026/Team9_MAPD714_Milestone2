@@ -617,6 +617,7 @@
 				DEVELOPMENT_TEAM = GMQ893K74F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Team9_MAPD714_Project-Milestone2/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Centen Cruise";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -646,6 +647,7 @@
 				DEVELOPMENT_TEAM = GMQ893K74F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Team9_MAPD714_Project-Milestone2/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Centen Cruise";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
