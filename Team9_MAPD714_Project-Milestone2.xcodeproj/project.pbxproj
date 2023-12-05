@@ -199,7 +199,6 @@
 			children = (
 				DE0D798C2B12D493007F31F8 /* DatabaseManager.swift */,
 				DE13F2F22B182472004CF969 /* DatabaseTables.swift */,
-				DEACC7372B1A8C7200FEB963 /* TicketItineraryViewCell.swift */,
 				DE13F2F42B1824FB004CF969 /* DatabaseTablesPrepopulation.swift */,
 				DE13F2F62B1825A5004CF969 /* DatabaseOperations.swift */,
 			);
@@ -209,6 +208,7 @@
 		DE7556EA2B1AB78B00F89469 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
+				DEACC7372B1A8C7200FEB963 /* TicketItineraryViewCell.swift */,
 				DE4FA2492B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift */,
 				DE13F2EA2B181DA3004CF969 /* CruiseTableViewCell.swift */,
 				DE9B5A6D2B1A7EFD00B5B373 /* GuestDetailsViewCell.swift */,
