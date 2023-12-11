@@ -23,6 +23,9 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var searchCruise: UISearchBar!
     @IBOutlet weak var cruiseListTableView: UITableView!
     
+    var selectedDestinationText: String = ""
+    var selectedPortText: String = ""
+    
     var dbManager: DatabaseManager! // DatabaseManager instance
     
     // Array to store fetched cruises
@@ -69,8 +72,23 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
     
     // Fetch cruises from the database
     func fetchCruiseData() {
-        cruises = dbManager.getCruises() // Use DatabaseManager method to get cruises
-        filteredCruises = cruises // Initially, set filteredCruises to all cruises
+        cruises = dbManager.getCruises() 
+        
+        if !selectedDestinationText.isEmpty && selectedDestinationText != "Select Destination" {
+            // Filter cruises that have the selected destination as the trip_to value
+            cruises = cruises.filter { cruise in
+                return cruise.tripTo == selectedDestinationText
+            }
+        }else if !selectedPortText.isEmpty && selectedPortText != "Select Port" {
+                // Filter cruises that have the selected port in their itinerary
+                cruises = cruises.filter { cruise in
+                    return cruise.visitingPorts.contains { port in
+                        return port.name == selectedPortText
+                    }
+                }
+        }
+                
+        filteredCruises = cruises // Initially, set filteredCruises to filtered cruises
         cruiseListTableView.reloadData()
     }
     

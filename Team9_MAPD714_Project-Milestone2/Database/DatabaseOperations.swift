@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  DatabaseOperations.swift
 //  Team9_MAPD714_Project-Milestone2
 //
 //  Created by Anmol Sharma on 2023-11-28.
@@ -361,5 +361,45 @@ extension DatabaseManager{
         
         return userId
     }
+    
+    func getUniqueTripToValues() -> [String] {
+        var tripToValues: [String] = []
+        var queryStatement: OpaquePointer?
 
+        let query = "SELECT DISTINCT trip_to FROM Cruises" // Assuming 'Cruises' is your table name
+
+        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                if let tripToValue = sqlite3_column_text(queryStatement, 0) {
+                    let tripTo = String(cString: tripToValue)
+                    tripToValues.append(tripTo)
+                }
+            }
+        }
+
+        sqlite3_finalize(queryStatement)
+        return tripToValues
+    }
+    
+    func getAllUniquePorts() -> [String] {
+            var ports: [String] = []
+
+            let query = "SELECT DISTINCT port_name FROM Cruise_Itinerary"
+            var queryStatement: OpaquePointer?
+
+            if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+                while sqlite3_step(queryStatement) == SQLITE_ROW {
+                    if let portName = sqlite3_column_text(queryStatement, 0) {
+                        let port = String(cString: portName)
+                        ports.append(port)
+                    }
+                }
+            } else {
+                print("Error preparing SELECT statement")
+            }
+
+            sqlite3_finalize(queryStatement)
+
+            return ports
+        }
 }

@@ -252,68 +252,47 @@ class HomeViewController: UIViewController {
            })
     }
     
+    func clearPreviousSelection(selectedButton: UIButton) {
+        if selectedButton == selectedDestination {
+            // Clear previous destination selection
+            selectedDestination.setTitle("Select Destination", for: .normal)
+        } else if selectedButton == selectedPort {
+            // Clear previous port selection
+            selectedPort.setTitle("Select Port", for: .normal)
+        }
+        dataSource = [] // Clear the dataSource
+    }
+    
     @IBAction func chooseDestination(_ sender: Any) {
-        dataSource = ["United States", "Italy", "Australia","Japan","Canada" ]
+        clearPreviousSelection(selectedButton: selectedPort)
+        
+        let dbManager = DatabaseManager()
+        dataSource = dbManager.getUniqueTripToValues()
         selectedButton = selectedDestination
-        selectedPort.setTitle("Select Port", for: .normal)
         addTransparentView(frames : selectedDestination.frame)
     }
     
     @IBAction func choosePort(_ sender: Any) {
-        if(selectedDestination.title(for: .normal) == "United States" ){
-            dataSource = ["Port Miami", "Port Everglades", "Port Canaveral","Port of Galveston","Port of New Orleans","Port of Los Angeles","Port of San Diego"
-                ,"Port of Seattle"
-            ]
-        }else if(selectedDestination.title(for: .normal) == "Italy"){
-            dataSource = ["Port of Venice","Port of Genoa","Port of Naples","Port of Livorno","Port of Palermo",
-            "Port of Bari","Port of Ancona","Port of Cagliari"]
-        }else if(selectedDestination.title(for: .normal) == "Australia"){
-            dataSource = ["Port of Sydney","Port of Melbourne","Port of Brisbane","Port of Fremantle","Port of Adelaide",
-            "Port of Cairns","Port of Hobart","Port of Darwin"]
-        }else if(selectedDestination.title(for: .normal) == "Japan"){
-            dataSource = ["Port of Tokyo","Port of Yokohama","Port of Kobe","Port of Osaka","Port of Nagasaki",
-            "Port of Fukuoka","Port of Okinawa","Port of Shimizu"]
-        }else if(selectedDestination.title(for: .normal) == "Canada"){
-            dataSource = ["Port of Vancouver","Canada Place","Port of Victoria","Port of Seattle"]
-        }
-        
+        clearPreviousSelection(selectedButton: selectedDestination)
+            
+        let dbManager = DatabaseManager()
+        dataSource = dbManager.getAllUniquePorts()
         selectedButton = selectedPort
         addTransparentView(frames : selectedDestination.frame)
-    }
-    
-    @IBAction func chooseDate(_ sender: UIButton) {
-        selectedButton = selectedDate
-        let datePicker = UIDatePicker()
-                  datePicker.datePickerMode = .date
-                  datePicker.minimumDate = Date() // Disable previous dates
-                  let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
-        let pickerFrame = CGRect(x: 0, y: 0, width: alertController.view.bounds.size.width - 20, height: 200)
-           datePicker.frame = pickerFrame
-           datePicker.center = CGPoint(x: alertController.view.bounds.size.width / 6, y: datePicker.center.y)
-
-           alertController.view.addSubview(datePicker)
-
-                  let doneAction = UIAlertAction(title: "Done", style: .default) { _ in
-                      let selectedDate = datePicker.date
-                      let dateFormatter = DateFormatter()
-                      dateFormatter.dateFormat = "dd-MMM-yyyy" // You can choose a format that suits your needs
-                      let selectedDateString = dateFormatter.string(from: selectedDate)
-                      self.selectedButton.setTitle( selectedDateString, for: .normal)
-                      self.selectedButton.layer.cornerRadius = 10
-                      // Handle the selected date
-                      print("Selected Date: \(selectedDate)")
-                  }
-                  alertController.addAction(doneAction)
-
-                  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                  alertController.addAction(cancelAction)
-
-                  present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func searchCruises(_ sender: Any) {
         let storyboard = UIStoryboard(name: "CruiseListingView", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "cruiseListViewController") as! CruiseListingViewController
+        
+        let selectedDestinationText = selectedDestination.title(for: .normal) ?? ""
+        let selectedPortText = selectedPort.title(for: .normal) ?? ""
+        
+        print(selectedDestinationText)
+        
+        viewController.selectedDestinationText = selectedDestinationText
+        viewController.selectedPortText = selectedPortText
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

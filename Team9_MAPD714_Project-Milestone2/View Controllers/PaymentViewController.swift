@@ -128,21 +128,18 @@ class PaymentViewController: UIViewController {
     
     @IBAction func payButtonClicked(_ sender: Any){
         if validateCardInfo() {
-                    if isApplePaySelected || isCreditDebitSelected {
-                        let storyboard = UIStoryboard(name: "TicketConfirmedView", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "ticketConfirmedViewController") as! TicketConfirmedViewController
+            let storyboard = UIStoryboard(name: "TicketConfirmedView", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ticketConfirmedViewController") as! TicketConfirmedViewController
                         
-                        viewController.booking = booking
-                        setupBackButton()
-                        viewController.loadViewIfNeeded()
+            viewController.booking = booking
+            setupBackButton()
+            viewController.loadViewIfNeeded()
                         
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    } else {
-                        displayErrorAlert(message: "Please select a payment method.")
-                    }
-                } else {
-                    displayErrorAlert(message: "Invalid card details. Please check and try again.")
-                }
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        else {
+            displayErrorAlert(message: "Invalid card details. Please check and try again.")
+        }
     }
     
     func setupBackButton()
