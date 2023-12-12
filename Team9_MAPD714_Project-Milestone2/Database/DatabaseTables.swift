@@ -55,7 +55,7 @@ extension DatabaseManager {
             CREATE TABLE IF NOT EXISTS Users_Family_Members (
                 member_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER REFERENCES Users(user_id),
-                booking_id INTEGER REFERENCES Bookings(booking_id),
+                booking_id INTEGER REFERENCES Bookings(ticketId),
                 name TEXT NOT NULL,
                 age INTEGER,
                 gender TEXT
@@ -81,7 +81,9 @@ extension DatabaseManager {
                 roomsCount INTEGER,
                 guestsCount INTEGER,
                 totalFare REAL,
-                bookingDate DATE
+                bookingDate DATE,
+                bookedBy TEXT,
+                ticketId TEXT
             );
         """
         

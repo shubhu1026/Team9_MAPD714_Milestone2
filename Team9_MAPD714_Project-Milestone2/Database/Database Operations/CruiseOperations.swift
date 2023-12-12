@@ -159,4 +159,38 @@ extension DatabaseManager{
             return ports
         }
     
+    func getCruiseDetails(cruiseId: Int) -> Cruise? {
+        var cruise: Cruise?
+        var queryStatement: OpaquePointer?
+        
+        let query = "SELECT cruise_name, cruise_cost, cruise_length_nights, operator_name, trip_from, trip_to, ports_count, departure_date, cruise_image FROM Cruises WHERE cruise_id = ?"
+        
+        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(queryStatement, 1, Int32(cruiseId))
+            
+            if sqlite3_step(queryStatement) == SQLITE_ROW {
+                let name = String(cString: sqlite3_column_text(queryStatement, 0))
+                let cost = Int(sqlite3_column_int(queryStatement, 1))
+                let nights = Int(sqlite3_column_int(queryStatement, 2))
+                let operatorName = String(cString: sqlite3_column_text(queryStatement, 3))
+                let tripFrom = String(cString: sqlite3_column_text(queryStatement, 4))
+                let tripTo = String(cString: sqlite3_column_text(queryStatement, 5))
+                let portsCount = Int(sqlite3_column_int(queryStatement, 6))
+                let date = String(cString: sqlite3_column_text(queryStatement, 7))
+                let imageName = String(cString: sqlite3_column_text(queryStatement, 8))
+                
+                cruise = Cruise(name: name, imageName: imageName, nights: nights, operatorName: operatorName, tripFrom: tripFrom, tripTo: tripTo, portsCount: portsCount, departureDate: date, avgPersonCost: Double(cost))
+                
+                // Fetch and assign ports information for this cruise
+                let portsForCruise = fetchPortsForCruise(name: name)
+                cruise?.visitingPorts = portsForCruise
+            }
+        } else {
+            print("SELECT statement for cruise details could not be prepared")
+        }
+        
+        sqlite3_finalize(queryStatement)
+        
+        return cruise
+    }
 }

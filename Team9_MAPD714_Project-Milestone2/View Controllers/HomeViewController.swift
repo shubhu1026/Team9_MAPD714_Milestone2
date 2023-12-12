@@ -107,7 +107,7 @@ class HomeViewController: UIViewController {
             var menuItems : [String] = []
             if isLoggedIn(){
                // User profile data is present
-               menuItems = ["My Profile", "My Favourites", "Destination Deals", "About Us", "Log Out"]
+               menuItems = ["My Profile", "My Bookings", "My Favourites", "Destination Deals", "About Us", "Log Out"]
            } else {
                // User profile data is not present
                menuItems = ["Login", "Sign Up", "Destination Deals", "About Us"]
@@ -162,6 +162,8 @@ class HomeViewController: UIViewController {
                 myProfileFunction()
             case "My Favourites":
                 myFavouritesFunction()
+            case "My Bookings":
+                myBookingsFunction()
             case "Log Out":
                 logout()
             // Add cases for other menu items as needed
@@ -188,6 +190,14 @@ class HomeViewController: UIViewController {
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func myBookingsFunction(){
+        let storyboard = UIStoryboard(name: "MyBookingsView", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "myBookingsViewController") as! MyBookingsViewController
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
     
     func logout() {
         // Clear user profile data from UserDefaults

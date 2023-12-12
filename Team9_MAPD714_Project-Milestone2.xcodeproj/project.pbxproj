@@ -52,6 +52,8 @@
 		DEACC7382B1A8C7200FEB963 /* TicketItineraryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEACC7372B1A8C7200FEB963 /* TicketItineraryViewCell.swift */; };
 		DEACC73A2B1A8E8F00FEB963 /* PaymentView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEACC7392B1A8E8F00FEB963 /* PaymentView.storyboard */; };
 		DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */; };
+		DED13B212B27FE55009A7ECB /* BookingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED13B202B27FE55009A7ECB /* BookingCollectionViewCell.swift */; };
+		DED13B252B27FFF0009A7ECB /* MyBookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED13B242B27FFF0009A7ECB /* MyBookingsViewController.swift */; };
 		DEE378EB2B03BE71004CE546 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE378EA2B03BE71004CE546 /* Itinerary.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +124,8 @@
 		DEACC7372B1A8C7200FEB963 /* TicketItineraryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItineraryViewCell.swift; sourceTree = "<group>"; };
 		DEACC7392B1A8E8F00FEB963 /* PaymentView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentView.storyboard; sourceTree = "<group>"; };
 		DEB891A12AF09BFD00A3DD0C /* CruiseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseDetailsViewController.swift; sourceTree = "<group>"; };
+		DED13B202B27FE55009A7ECB /* BookingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCollectionViewCell.swift; sourceTree = "<group>"; };
+		DED13B242B27FFF0009A7ECB /* MyBookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewController.swift; sourceTree = "<group>"; };
 		DEE378EA2B03BE71004CE546 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +196,7 @@
 				DEACC7352B1A8C1F00FEB963 /* TicketConfirmedViewController.swift */,
 				DE3C67272B02CCF3006317BA /* PaymentViewController.swift */,
 				DE862A4D2B27CE93000C612F /* FavouritesViewController.swift */,
+				DED13B242B27FFF0009A7ECB /* MyBookingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				DE13F2F82B182F5E004CF969 /* DatePickerView.swift */,
 				DE13F2FA2B184FFA004CF969 /* User.swift */,
 				DE9B5A6B2B1A7ACB00B5B373 /* BookingDetails.swift */,
+				DED13B202B27FE55009A7ECB /* BookingCollectionViewCell.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				DE9B5A6A2B1A79AD00B5B373 /* GuestDetailsViewController.swift in Sources */,
 				DE3C67282B02CCF4006317BA /* PaymentViewController.swift in Sources */,
 				DE13F2E82B181B9E004CF969 /* CruiseListingViewController.swift in Sources */,
+				DED13B252B27FFF0009A7ECB /* MyBookingsViewController.swift in Sources */,
 				DEACC7362B1A8C1F00FEB963 /* TicketConfirmedViewController.swift in Sources */,
 				DE862A542B27E7DE000C612F /* CruiseOperations.swift in Sources */,
 				DE4FA24A2B1542C800F6AE7E /* CruiseDetailsItineraryCell.swift in Sources */,
@@ -461,6 +468,7 @@
 				DEACA93F2AF02F0700EC7CEE /* AppDelegate.swift in Sources */,
 				DE13F2F32B182472004CF969 /* DatabaseTables.swift in Sources */,
 				DE862A562B27E870000C612F /* BookingOperations.swift in Sources */,
+				DED13B212B27FE55009A7ECB /* BookingCollectionViewCell.swift in Sources */,
 				DEB891A22AF09BFD00A3DD0C /* CruiseDetailsViewController.swift in Sources */,
 				DEACA9412AF02F0700EC7CEE /* SceneDelegate.swift in Sources */,
 				DE862A4E2B27CE93000C612F /* FavouritesViewController.swift in Sources */,
