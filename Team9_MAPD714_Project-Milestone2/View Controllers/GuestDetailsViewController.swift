@@ -187,6 +187,13 @@ class GuestDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
+        guard !guestDetails.isEmpty else {
+            let alert = UIAlertController(title: "Passengers Required", message: "Please add passengers before continuing.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         createBooking()
         
         let storyboard = UIStoryboard(name: "PaymentView", bundle: nil)

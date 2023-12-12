@@ -26,6 +26,7 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var ticketItineraryTable: UITableView!
     
+    @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var ticketIdText: UILabel!
     @IBOutlet weak var cruiseNameText: UILabel!
     @IBOutlet weak var bookedByText: UILabel!
@@ -65,7 +66,7 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
             cruiseNameText.text = booking?.cruiseSelected.name
             bookedByText.text = booking?.bookedBy
             bookingDateText.text = booking?.bookingDate
-            
+        
             if let totalRooms = booking?.totalRooms {
                 totalRoomsCountText.text = "\(totalRooms)"
             }
@@ -139,4 +140,11 @@ class TicketConfirmedViewController: UIViewController, UITableViewDataSource, UI
 
             return (seniorCount, adultCount, childCount)
         }
+    
+    @IBAction func homeButtonClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! HomeViewController
+                    
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
