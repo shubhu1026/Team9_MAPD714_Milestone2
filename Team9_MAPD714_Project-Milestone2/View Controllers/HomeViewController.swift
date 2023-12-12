@@ -110,7 +110,7 @@ class HomeViewController: UIViewController {
                menuItems = ["My Profile", "My Favourites", "Destination Deals", "About Us", "Log Out"]
            } else {
                // User profile data is not present
-               menuItems = ["Login", "Sign Up", "My Favourites", "Destination Deals", "About Us"]
+               menuItems = ["Login", "Sign Up", "Destination Deals", "About Us"]
            }
             var yOffset: CGFloat = 60
             let menuItemHeight: CGFloat = 40  // Declare menuItemHeight here
@@ -160,6 +160,8 @@ class HomeViewController: UIViewController {
             case "My Profile":
                 // Call a function for My Profile
                 myProfileFunction()
+            case "My Favourites":
+                myFavouritesFunction()
             case "Log Out":
                 logout()
             // Add cases for other menu items as needed
@@ -178,6 +180,13 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
         // Implement the function for Login In
         print("Login In tapped")
+    }
+    
+    func myFavouritesFunction(){
+        let storyboard = UIStoryboard(name: "FavouritesView", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "favouritesViewController") as! FavouritesViewController
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func logout() {

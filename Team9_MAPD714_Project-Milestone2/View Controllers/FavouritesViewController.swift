@@ -1,8 +1,8 @@
 //
-//  HomeViewController.swift
+//  FavouritesViewController.swift
 //  Team9_MAPD714_Project-Milestone2
 //
-//  Created by Anmol Sharma on 2023-11-28.
+//  Created by Shubham Patel on 2023-12-11.
 //
 //
 //  Team Number: 9
@@ -13,22 +13,20 @@
 //  Anmol Sharma - 301364872
 //  Submission date - 1 Dec 2023
 //
-//  Displays the list of cruises and some details to the users 
+//  Displays the list of favourite cruises
 
-
+import Foundation
 import UIKit
 
-class CruiseListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class FavouritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var searchCruise: UISearchBar!
     @IBOutlet weak var cruiseListTableView: UITableView!
     
-    var selectedDestinationText: String = ""
-    var selectedPortText: String = ""
-    
+    var userEmailText: String?
     var userId: Int?
     
-    var dbManager: DatabaseManager! // DatabaseManager instance
+    let dbManager = DatabaseManager()
     
     // Array to store fetched cruises
     var cruises: [Cruise] = []
@@ -45,25 +43,9 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
         cruiseListTableView.dataSource = self
         
         cruiseListTableView.showsVerticalScrollIndicator = false
-        
-        dbManager = DatabaseManager()
-        
-        if(isLoggedIn()){
-            fetchUserId()
-        }
+
         // Fetch data from the database
         fetchCruiseData()
-    }
-    
-    func fetchUserId() {
-        guard let userEmail = UserDefaults.standard.string(forKey: "userEmail") else {
-            print("User email not found")
-            return
-        }
-
-        if let fetchedUserId = dbManager.getUserId(forEmail: userEmail) {
-            userId = fetchedUserId
-        }
     }
     
     func setupBackground() {
@@ -88,40 +70,27 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
     
     // Fetch cruises from the database
     func fetchCruiseData() {
-        cruises = dbManager.getCruises() 
-        
-        if !selectedDestinationText.isEmpty && selectedDestinationText != "Select Destination" {
-            // Filter cruises that have the selected destination as the trip_to value
-            cruises = cruises.filter { cruise in
-                return cruise.tripTo == selectedDestinationText
-            }
-        }else if !selectedPortText.isEmpty && selectedPortText != "Select Port" {
-                // Filter cruises that have the selected port in their itinerary
-                cruises = cruises.filter { cruise in
-                    return cruise.visitingPorts.contains { port in
-                        return port.name == selectedPortText
-                    }
-                }
-        }
-                
-        filteredCruises = cruises // Initially, set filteredCruises to filtered cruises
-        
-        if isLoggedIn() {
-            guard let userId = userId else {
-                print("User ID not found")
+        guard let userEmail = UserDefaults.standard.string(forKey: "userEmail") else {
+                print("User email not found")
                 return
             }
 
-            for cruise in cruises {
-                if let cruiseId = dbManager.getCruiseID(forCruiseName: cruise.name) {
-                    cruise.isFavourite = dbManager.isCruiseInFavourites(forUserId: userId, cruiseId: cruiseId)
-                } else {
-                    cruise.isFavourite = false
+            if let fetchedUserId = dbManager.getUserId(forEmail: userEmail) {
+                let id = fetchedUserId
+                userId = id
+                
+                let favouriteCruises = dbManager.getFavouriteCruises(forUserId: id)
+                cruises = favouriteCruises
+                filteredCruises = cruises
+                
+                for cruise in favouriteCruises {
+                    cruise.isFavourite = true
                 }
+
+                cruiseListTableView.reloadData()
+            } else {
+                print("Failed to fetch user ID")
             }
-        }
-        
-        cruiseListTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -152,51 +121,32 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
         cell.configure(with: cruise)
         setupCard(cell.cardView)
         
-        if isLoggedIn() {
-            let heartImage = cruise.isFavourite ? UIImage(named: "icon_heart_fill") : UIImage(named: "icon_heart")
-            cell.heartSelected.setImage(heartImage, for: .normal)
-            cell.heartSelected.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
-            cell.heartSelected.tag = indexPath.row
-            cell.heartSelected.isEnabled = true // Enable the favorite button
-        } else {
-                    // If not logged in, disable the favorite button
-            cell.heartSelected.setImage(UIImage(named: "icon_heart"), for: .normal)
-            cell.heartSelected.isEnabled = false // Disable the favorite button
-        }
+        let heartImage = cruise.isFavourite ? UIImage(named: "icon_heart_fill") : UIImage(named: "icon_heart")
+        cell.heartSelected.setImage(heartImage, for: .normal)
+        
+        cell.heartSelected.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
+        cell.heartSelected.tag = indexPath.row
         
         return cell
     }
     
-    func isLoggedIn() -> Bool {
-        return UserDefaults.standard.bool(forKey: "isLoggedIn")
-    }
-    
     @objc func favoriteButtonTapped(_ sender: UIButton) {
-        if isLoggedIn() {
-            // Your existing code for favorite button tap handling
-            let selectedRowIndex = sender.tag
-                
-                // Toggle the isFavourite status for the selected cruise
-            filteredCruises[selectedRowIndex].isFavourite.toggle()
-                
-                // Reload the corresponding row in the table view
-            cruiseListTableView.reloadRows(at: [IndexPath(row: selectedRowIndex, section: 0)], with: .none)
-                
-                // Get the selected cruise
-            let selectedCruise = filteredCruises[selectedRowIndex]
-                
-                // Toggle the favourite status for the cruise in the database
-            dbManager.toggleFavouriteCruise(forUserId: userId, cruise: selectedCruise)
-        } else {
-            // Handle not logged in scenario, prompt user to log in or perform necessary action
-            showAlertToLogIn()
-        }
-    }
-    
-    func showAlertToLogIn() {
-        let alert = UIAlertController(title: "Log In Required", message: "Please log in to use this feature.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        print("Favourite Tapped")
+        let selectedRowIndex = sender.tag
+            
+            // Toggle the isFavourite status for the selected cruise
+        filteredCruises[selectedRowIndex].isFavourite.toggle()
+            
+            // Reload the corresponding row in the table view
+        cruiseListTableView.reloadRows(at: [IndexPath(row: selectedRowIndex, section: 0)], with: .none)
+            
+            // Get the selected cruise
+        let selectedCruise = filteredCruises[selectedRowIndex]
+            
+            // Toggle the favourite status for the cruise in the database
+        dbManager.toggleFavouriteCruise(forUserId: userId, cruise: selectedCruise)
+        
+        fetchCruiseData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -224,5 +174,10 @@ class CruiseListingViewController: UIViewController, UITableViewDataSource, UITa
         cardView.layer.shadowRadius = 4
         //cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: cardView.frame.width, height: 500)
     }
+    
+    func isLoggedIn() -> Bool{
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
+    }
+    
 }
 

@@ -84,6 +84,24 @@ extension DatabaseManager {
                 bookingDate DATE
             );
         """
+        
+        let createFavouritesTable = """
+            CREATE TABLE IF NOT EXISTS Favourites (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER REFERENCES Users(user_id),
+                cruise_id INTEGER REFERENCES Cruises(cruise_id),
+                UNIQUE(user_id, cruise_id)
+            );
+        """
+
+        if sqlite3_prepare_v2(db, createFavouritesTable, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
+                print("Favourites table created successfully")
+            } else {
+                print("Favourites table could not be created")
+            }
+        }
+
 
 
         if sqlite3_prepare_v2(db, createUsersTable, -1, &createTableStatement, nil) == SQLITE_OK {
